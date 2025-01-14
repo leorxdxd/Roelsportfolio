@@ -27,7 +27,7 @@ function Footer() {
       <p className="footer-text">
         A portfolio designed & built by{" "}
         <a
-          href="https://github.com/leorxdxd/Roel-Portfolio"
+          href="https://github.com/leorxdxd/Roelsportfolio"
           target="_blank"
           rel="noreferrer"
           className="footer-link"
