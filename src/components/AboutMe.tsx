@@ -19,15 +19,15 @@ const AboutMe = () => {
           <h1>About Me</h1>
           <p className="pronunciation">/roh-EL DEH-los REH-yes/</p>
           <p>
-            Hello World! I'm Roel Delos Reyes, a <strong>Front-End Web Developer</strong> based
-            out of Metro Manila. I love combining the worlds of logic and
+            Hello! I'm Roel Delos Reyes, a <strong>Front-End Web Developer</strong> from
+            Las Pinas City, Metro Manila. I love combining the worlds of logic and
             creative design to make eye-catching, accessible, and user-friendly
             websites and applications.
           </p>
           <p>
             With a passion for technology and innovation, I specialize in
             building responsive and dynamic web applications using modern tools
-            like <strong>React</strong>, <strong>TypeScript</strong>, and <strong>SCSS</strong>.
+            like <strong>React</strong>,<strong>JavaScript</strong>, <strong>TypeScript</strong>, and <strong>CSS</strong>.
             I’m also experienced in integrating APIs, optimizing performance, and
             ensuring cross-browser compatibility.
           </p>
