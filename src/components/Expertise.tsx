@@ -1,7 +1,7 @@
 import React from "react";
 import '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faReact, faDocker, faPython } from '@fortawesome/free-brands-svg-icons';
+import { faReact, faJava, faPython } from '@fortawesome/free-brands-svg-icons';
 import Chip from '@mui/material/Chip';
 import '../assets/styles/Expertise.scss';
 
@@ -9,18 +9,18 @@ import '../assets/styles/Expertise.scss';
 import backgroundImage from '../assets/images/background2.jpg'; // Update the path to your image
 
 const labelsFirst = [
-  "React", "TypeScript", "JavaScript", "HTML5", "CSS3", "SASS", "Flask", 
-  "Python", "SQL", "PostgreSQL", "Postman"
+  "React", "TypeScript", "JavaScript", "HTML5", "CSS3", "SCSS", "Flask", 
+  "Python", "SQL", "PostgreSQL"
 ];
 
 const labelsSecond = [
-  "Git", "GitHub Actions", "Docker", "AWS", "Azure", "Linux", 
-  "Snowflake", "Pandas", "Selenium"
+  "Java", "OOP", "Design Patterns", "Spring Boot", "Hibernate", 
+  "REST APIs", "Microservices", "MySQL", "XAMPP", "WAMPP"
 ];
 
 const labelsThird = [
-  "OpenAI", "Groq", "LangChain", "Qdrant", "Hugging Face", 
-  "LlamaIndex", "Streamlit"
+  "OpenAI", "LangChain", "Hugging Face", 
+  "LlamaIndex" 
 ];
 
 function Expertise() {
@@ -49,13 +49,13 @@ function Expertise() {
           </div>
         </div>
 
-        {/* DevOps & Automation */}
+        {/* OOP & Java (Creating Systems like Banking Systems) */}
         <div className="card">
-          <FontAwesomeIcon icon={faDocker} size="3x" className="icon" />
-          <h3>DevOps & Automation</h3>
+          <FontAwesomeIcon icon={faJava} size="3x" className="icon" />
+          <h3>OOP & Java</h3>
           <p>
-            Setting up CI/CD pipelines, automated testing, and deployment processes to 
-            streamline development and production workflows.
+            Designing and developing robust, scalable systems using Java and Object-Oriented Programming (OOP) principles. 
+            Experience in building banking systems, REST APIs, and microservices.
           </p>
           <div className="chips">
             <span className="chip-title">Tech stack:</span>
