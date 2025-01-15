@@ -57,6 +57,24 @@ $transition: all 0.3s ease;
       }
     }
   }
+
+  // Footer Credit (for pngtree.com attribution)
+  .footer-credit {
+    font-size: 14px;
+    color: rgba($white, 0.6);
+    margin: 10px 0 0;
+
+    .footer-link {
+      color: $gold;
+      text-decoration: none;
+      transition: $transition;
+
+      &:hover {
+        color: $dark-gold;
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 // Responsive Design
@@ -72,6 +90,10 @@ $transition: all 0.3s ease;
 
     .footer-text {
       font-size: 14px;
+    }
+
+    .footer-credit {
+      font-size: 12px;
     }
   }
 }
