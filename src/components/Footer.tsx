@@ -27,7 +27,7 @@ function Footer() {
       <p className="footer-text">
         A portfolio designed & built by{" "}
         <a
-          href="https://github.com/leorxdxd/Roelsportfolio"
+          href="https://github.com/leorxdxd/Roel-Portfolio"
           target="_blank"
           rel="noreferrer"
           className="footer-link"
@@ -35,6 +35,17 @@ function Footer() {
           Roel Delos Reyes
         </a>{" "}
         with 💜
+      </p>
+      <p className="footer-credit">
+        Photos from{" "}
+        <a
+          href="https://pngtree.com"
+          target="_blank"
+          rel="noreferrer"
+          className="footer-link"
+        >
+          pngtree.com
+        </a>
       </p>
     </footer>
   );
