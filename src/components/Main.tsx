@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import profileImage1 from '../assets/images/1.png'; // Import the first image
-import profileImage2 from '../assets/images/2.png'; // Import the first image
-import profileImage3 from '../assets/images/new2.png'; // Import the second image
+import profileImage2 from '../assets/images/2.png'; // Import the second image
 import backgroundImage from '../assets/images/background1.jpg'; // Import the background image
 import '../assets/styles/Main.scss';
 
 function Main() {
   const [currentImage, setCurrentImage] = useState(0); // State to track the current image
-  const images = [profileImage1, profileImage2, profileImage3]; // Array of images
+  const images = [profileImage1, profileImage2]; // Array of images (removed profileImage3)
 
   useEffect(() => {
     const interval = setInterval(() => {
