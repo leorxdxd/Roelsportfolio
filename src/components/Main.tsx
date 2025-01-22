@@ -34,7 +34,7 @@ function Main() {
             I'm <span className="highlight">Roel Delos Reyes</span>
           </h1>
           <p className="profession">
-            <span className="animated-profession">This is not yet Final. Thank you! >_<</span>
+            <span className="animated-profession">This is not yet Final</span>
           </p>
           <div className="action-buttons">
             <a
