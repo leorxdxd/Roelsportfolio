@@ -4,19 +4,19 @@ import "../assets/styles/Testimonials.scss";
 const Testimonials = () => {
   const testimonials = [
     {
-      name: "John Smith",
+      name: "Arviel Raymundo",
       position: "CEO, Tech Innovators Inc.",
       feedback:
         "Roel is an exceptional developer with a keen eye for detail. His ability to solve complex problems is unmatched.",
     },
     {
-      name: "Jane Doe",
+      name: "Edgar Baobaoen",
       position: "Project Manager, Creative Solutions",
       feedback:
         "Working with Roel has been a pleasure. His professionalism and technical expertise have greatly contributed to our success.",
     },
     {
-      name: "Michael Lee",
+      name: "Mj Pajaron",
       position: "CTO, Digital Ventures",
       feedback:
         "Roel’s dedication to excellence is evident in every project he undertakes. Highly recommended!",
