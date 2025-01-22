@@ -36,16 +36,7 @@ $transition: all 0.3s ease;
     z-index: 2;
     animation: fadeIn 1s ease-in-out;
 
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 3px;
-      background-color: $gold;
-    }
+    // Removed the ::after pseudo-element
   }
 
   // Projects Grid
