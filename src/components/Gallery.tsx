@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../assets/styles/Gallery.scss";
 
 const galleryImages = [
@@ -13,44 +13,16 @@ const galleryImages = [
 ];
 
 function Gallery() {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
-  const openModal = (imageSrc: string) => {
-    setSelectedImage(imageSrc);
-  };
-
-  const closeModal = () => {
-    setSelectedImage(null);
-  };
-
   return (
     <div className="gallery-container" id="gallery">
       <h2 className="gallery-title">Gallery</h2>
       <div className="gallery-grid">
         {galleryImages.map((image) => (
-          <div
-            key={image.id}
-            className="gallery-item"
-            onClick={() => openModal(image.src)}
-          >
+          <div key={image.id} className="gallery-item">
             <img src={image.src} alt={image.alt} className="gallery-thumbnail" />
-            <div className="overlay">
-              <span>View</span>
-            </div>
           </div>
         ))}
       </div>
-
-      {selectedImage && (
-        <div className="gallery-modal" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <img src={selectedImage} alt="Selected" className="modal-image" />
-            <button className="modal-close" onClick={closeModal}>
-              &times;
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
