@@ -6,7 +6,7 @@ import Chip from '@mui/material/Chip';
 import '../assets/styles/Expertise.scss';
 
 // Import the background image
-import backgroundImage from '../assets/images/background2.jpg'; // Update the path to your image
+import backgroundImage from '../assets/images/012.jpg'; // Update the path to your image
 
 const labelsFirst = [
   "React", "TypeScript", "JavaScript", "HTML5", "CSS3", "SCSS", "Flask", 
