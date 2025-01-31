@@ -24,7 +24,6 @@ $transition: all 0.3s ease;
     // Image Section
     .about-me-image {
       flex: 1;
-      animation: fadeInLeft 1s ease-in-out;
 
       .profile-picture {
         width: 100%;
@@ -45,7 +44,6 @@ $transition: all 0.3s ease;
     .about-me-text {
       flex: 1;
       text-align: left;
-      animation: fadeInRight 1s ease-in-out;
 
       h1 {
         font-size: 36px;
@@ -134,7 +132,6 @@ $transition: all 0.3s ease;
           &:hover {
             background-color: $gold;
             color: $black;
-            transform: translateY(-5px);
           }
         }
       }
@@ -149,38 +146,13 @@ $transition: all 0.3s ease;
           text-decoration: none;
           color: $white;
           font-size: 24px;
-          transition: $transition;
 
           &:hover {
             color: $gold;
-            transform: translateY(-5px);
           }
         }
       }
     }
-  }
-}
-
-// Animations
-@keyframes fadeInLeft {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes fadeInRight {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
   }
 }
 
