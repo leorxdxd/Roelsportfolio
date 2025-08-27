@@ -1,18 +1,14 @@
-// =========================
-// Variables
-// =========================
+please can you suggest whats good design here: // Variables
 $gold: #ffd700;
 $dark-gold: #c5a600;
 $black: #121212;
 $white: #ffffff;
 $gray: #f5f5f5;
-$navy-blue: #001f3f; // secondary accent
+$navy-blue: #001f3f; // added navy blue
 $transition: all 0.3s ease;
 $shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
-// =========================
 // Global Reset
-// =========================
 * {
   margin: 0;
   padding: 0;
@@ -26,9 +22,7 @@ body {
   background-color: $black;
 }
 
-// =========================
 // Portfolio Container
-// =========================
 .portfolio-container {
   position: relative;
   width: 100%;
@@ -42,7 +36,7 @@ body {
   padding: 20px;
   overflow: hidden;
 
-  // Overlay
+  // Overlay for better readability
   .overlay {
     position: absolute;
     top: 0;
@@ -64,9 +58,6 @@ body {
     width: 100%;
     padding: 20px;
 
-    // =========================
-    // Text Content
-    // =========================
     .text-content {
       max-width: 600px;
 
@@ -81,19 +72,11 @@ body {
 
       .name {
         font-size: 56px;
+        color: $white; 
         font-weight: 700;
         margin-bottom: 20px;
+        
         text-shadow: $shadow;
-
-        // Gradient headline
-        background: linear-gradient(90deg, $white, $gold);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-
-        &:hover {
-          color: $gold;
-          transition: $transition;
-        }
 
         .highlight {
           color: $gold;
@@ -105,6 +88,7 @@ body {
             bottom: -5px;
             left: 0;
             width: 100%;
+            //height: 10px;
             background: linear-gradient(90deg, $gold, transparent);
             animation: underline 2s infinite;
           }
@@ -134,9 +118,6 @@ body {
         }
       }
 
-      // =========================
-      // Buttons
-      // =========================
       .action-buttons {
         display: flex;
         gap: 20px;
@@ -162,35 +143,10 @@ body {
             transform: translateY(-5px);
             box-shadow: 0 6px 12px rgba($gold, 0.4);
           }
-
-          &.gold {
-            background-color: $gold;
-            color: $black;
-
-            &:hover {
-              background-color: $dark-gold;
-              border-color: $dark-gold;
-              color: $white;
-            }
-          }
-
-          &.navy {
-            border: 2px solid $navy-blue;
-            color: $navy-blue;
-
-            &:hover {
-              background-color: $navy-blue;
-              color: $white;
-              box-shadow: 0 6px 12px rgba($navy-blue, 0.4);
-            }
-          }
         }
       }
     }
 
-    // =========================
-    // Image Content
-    // =========================
     .image-content {
       position: relative;
       animation: fadeInRight 1.5s ease-in-out;
@@ -203,9 +159,10 @@ body {
         z-index: 2;
         transition: $transition;
 
-        // Gold + Navy glow
-        filter: drop-shadow(0 0 2px $gold) drop-shadow(0 0 6px $navy-blue);
+        // Add a gold outline to the person in the image
+        filter: drop-shadow(0 0 0px $gold) drop-shadow(0 0 1px $gold) drop-shadow(0 0 2px $gold);
 
+        // Glow effect on hover
         &:hover {
           transform: scale(1.05);
         }
@@ -214,33 +171,51 @@ body {
   }
 }
 
-// =========================
 // Animations
-// =========================
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideInLeft {
-  from { transform: translateX(-100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @keyframes fadeInRight {
-  from { transform: translateX(100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @keyframes underline {
-  0% { width: 0; }
-  50% { width: 100%; }
-  100% { width: 0; }
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
 }
 
-// =========================
 // Responsive Design
-// =========================
 @media (max-width: 768px) {
   .portfolio-container {
     padding: 50px 20px;
@@ -252,12 +227,19 @@ body {
       .text-content {
         margin-bottom: 40px;
 
-        .name { font-size: 40px; }
-        .profession { font-size: 22px; }
+        .name {
+          font-size: 40px;
+        }
+
+        .profession {
+          font-size: 22px;
+        }
       }
 
       .image-content {
-        .profile-picture { width: 300px; }
+        .profile-picture {
+          width: 300px;
+        }
       }
     }
   }
