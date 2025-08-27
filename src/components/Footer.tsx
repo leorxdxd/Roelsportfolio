@@ -16,7 +16,7 @@ function Footer() {
           <GitHubIcon className="social-icon" />
         </a>
         <a
-          href="https://ph.linkedin.com/in/roel-de-los-reyes-3a5627251"
+          href="https://www.linkedin.com/in/roel-de-los-reyes-7a76412b6/"
           target="_blank"
           rel="noreferrer"
           className="social-link"
