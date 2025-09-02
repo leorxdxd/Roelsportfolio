@@ -25,14 +25,14 @@ function Footer() {
         </a>
       </div>
       <p className="footer-text">
-        A portfolio designed & built by{" "}
+        A portfolio handcrafted, designed & built by{" "}
         <a
           href="https://github.com/leorxdxd/Roel-Portfolio"
           target="_blank"
           rel="noreferrer"
           className="footer-link"
         >
-          Roel Delos Reyes
+          Roel S. Delos Reyes
         </a>{" "}
         with 💜
       </p>
