@@ -1,3 +1,8 @@
+// ==========================
+// Fonts Import (Google Fonts)
+// ==========================
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap');
+
 // Variables
 $gold: #ffd700;
 $dark-gold: #c5a600;
@@ -68,14 +73,15 @@ body {
         animation: slideInLeft 1s ease-in-out;
         text-transform: uppercase;
         letter-spacing: 2px;
+        font-family: 'Poppins', sans-serif; // modern clean
       }
 
       .name {
+        font-family: 'Playfair Display', serif; // luxury serif
         font-size: 56px;
         color: $white; 
         font-weight: 700;
         margin-bottom: 20px;
-        
         text-shadow: $shadow;
 
         .highlight {
@@ -88,7 +94,6 @@ body {
             bottom: -5px;
             left: 0;
             width: 100%;
-            //height: 10px;
             background: linear-gradient(90deg, $gold, transparent);
             animation: underline 2s infinite;
           }
@@ -96,9 +101,11 @@ body {
       }
 
       .profession {
+        font-family: 'Playfair Display', serif; // elegant serif
         font-size: 28px;
         margin-bottom: 30px;
         text-shadow: $shadow;
+        font-weight: 600;
 
         .animated-profession {
           display: inline-block;
@@ -123,6 +130,7 @@ body {
         gap: 20px;
 
         .btn {
+          font-family: 'Poppins', sans-serif; // modern clean
           text-decoration: none;
           padding: 12px 24px;
           border: 2px solid $gold;
@@ -173,46 +181,24 @@ body {
 
 // Animations
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes slideInLeft {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
 }
 
 @keyframes fadeInRight {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
 }
 
 @keyframes underline {
-  0% {
-    width: 0;
-  }
-  50% {
-    width: 100%;
-  }
-  100% {
-    width: 0;
-  }
+  0% { width: 0; }
+  50% { width: 100%; }
+  100% { width: 0; }
 }
 
 // Responsive Design
