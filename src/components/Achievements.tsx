@@ -4,10 +4,10 @@ import "../assets/styles/Achievements.scss";
 const Achievements = () => {
   const achievements = [
     {
-      title: "Dean's Lister (3 Consecutive Semesters)",
-      date: "2022 - 2023",
+      title: "Internet Society Certification",
+      date: "July 2025",
       description:
-        "Consistently recognized for academic excellence, maintaining a GPA of 1.5 or higher.",
+        "Certified by the Internet Society for successfully completing training in Internet standards, protocols, and global networking principles.",
       image: require("../assets/images/Internet Society-1.png"), // Add image for Dean's Lister
     },
     {
