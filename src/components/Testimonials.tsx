@@ -7,19 +7,19 @@ const Testimonials = () => {
       name: "Arviel Raymundo",
       position: "CEO, Tech Innovators Inc.",
       feedback:
-        "Roel is an exceptional developer with a keen eye for detail. His ability to solve complex problems is unmatched.",
+        "Roel is a truly exceptional developer. His precision, problem-solving mindset, and innovative approach consistently deliver results that exceed expectations.",
     },
     {
       name: "Edgar Baobaoen",
       position: "Project Manager, Creative Solutions",
       feedback:
-        "Working with Roel has been a pleasure. His professionalism and technical expertise have greatly contributed to our success.",
+        "Collaborating with Roel has been seamless and inspiring. His professionalism, technical mastery, and clear communication played a vital role in driving our projects forward.",
     },
     {
       name: "Mj Pajaron",
       position: "CTO, Digital Ventures",
       feedback:
-        "Roel’s dedication to excellence is evident in every project he undertakes. Highly recommended!",
+        "Roel’s commitment to excellence sets him apart. Every project he touches reflects quality, creativity, and an unwavering dedication to success.",
     },
   ];
 
