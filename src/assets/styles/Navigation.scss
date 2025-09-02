@@ -1,3 +1,6 @@
+// Import Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Merriweather:wght@400;700&display=swap');
+
 // Variables
 $gold: #ffd700;
 $dark-gold: #c5a600;
@@ -7,13 +10,33 @@ $gray: #f5f5f5;
 $transition: all 0.3s ease;
 
 // General Styles
+body {
+  font-family: 'Merriweather', serif; // Body text (elegant, readable)
+  color: $white;
+  background-color: $black;
+}
+
 .navigation-bar {
-  background-color: #121212;
+  background-color: $black;
   padding: 0 20px;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  button {
+    font-family: 'Montserrat', sans-serif; // Modern bold nav buttons
+    font-size: 1rem;
+    text-transform: none;
+    font-weight: 600;
+    margin-right: 15px;
+    color: $white;
+
+    &:hover {
+      color: #90caf9;
+      background-color: transparent;
+    }
+  }
 }
 
 .navbar-fixed-top {
@@ -29,29 +52,18 @@ $transition: all 0.3s ease;
   }
 }
 
-.navigation-bar button {
-  font-size: 1rem;
-  text-transform: none;
-  font-weight: 500;
-  margin-right: 15px;
-
-  &:hover {
-    color: #90caf9;
-    background-color: transparent;
-  }
-}
-
 /* Highlight Contact Button */
 .highlight-contact {
-  color: #ffd700 !important; /* Gold color */
+  font-family: 'Montserrat', sans-serif;
+  color: $gold !important;
   font-weight: bold;
-  border: 2px solid #ffd700;
+  border: 2px solid $gold;
   border-radius: 4px;
   padding: 5px 10px;
 
   &:hover {
-    background-color: #ffd700;
-    color: #121212;
+    background-color: $gold;
+    color: $black;
   }
 }
 
@@ -59,12 +71,13 @@ $transition: all 0.3s ease;
 .navigation-bar-responsive {
   background-color: #1e1e1e;
   height: 100%;
-  color: #fff;
+  color: $white;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   .mobile-menu-top {
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.2rem;
     margin: 10px 0;
     color: #90caf9;
@@ -90,29 +103,33 @@ $transition: all 0.3s ease;
     text-align: center;
 
     span {
+      font-family: 'Montserrat', sans-serif; // Fix font
+      color: $white !important; // Fix black text issue on mobile
       font-size: 1rem;
-      font-weight: 500;
+      font-weight: 600;
     }
   }
 
   .highlight-contact {
-    color: #ffd700 !important; /* Gold color for mobile */
+    font-family: 'Montserrat', sans-serif;
+    color: $gold !important;
     font-weight: bold;
-    border: 2px solid #ffd700;
+    border: 2px solid $gold;
     border-radius: 4px;
     padding: 10px;
 
     &:hover {
-      background-color: #ffd700;
-      color: #121212;
+      background-color: $gold;
+      color: $black;
     }
   }
 }
 
 /* Active Menu Item */
 .active {
-  color: #ffd700 !important; /* Gold color */
-  border-bottom: 2px solid #ffd700 !important;
+  color: $gold !important;
+  border-bottom: 2px solid $gold !important;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* Logo Styles */
