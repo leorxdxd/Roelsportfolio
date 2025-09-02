@@ -8,7 +8,7 @@ const Achievements = () => {
       date: "2022 - 2023",
       description:
         "Consistently recognized for academic excellence, maintaining a GPA of 1.5 or higher.",
-      image: require("../assets/images/ach (1).png"), // Add image for Dean's Lister
+      image: require("../assets/images/Internet Society-1.png"), // Add image for Dean's Lister
     },
     {
       title: "Outstanding Student Assistant Award",
