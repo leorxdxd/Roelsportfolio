@@ -8,7 +8,7 @@ const Achievements = () => {
       date: "July 2025",
       description:
         "Certified by the Internet Society for successfully completing training in Internet standards, protocols, and global networking principles.",
-      image: require("../assets/images/Internet Society-1.png"), // Add image for Dean's Lister
+      image: require("../assets/images/ach (1).png"), // Add image for Dean's Lister
     },
     {
       title: "Outstanding Student Assistant Award",
