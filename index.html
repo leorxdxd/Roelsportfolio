@@ -10,18 +10,16 @@
     />
     <meta name="author" content="Roel Delos Reyes" />
     <meta name="theme-color" content="#2563eb" />
-    <meta name="color-scheme" content="light dark" />
+    <meta name="color-scheme" content="light" />
     <script>
-      // Apply saved / system theme before the page paints (prevents a flash).
+      // Light theme by default; dark only if the visitor chose it with the toggle.
+      // Runs before the page paints to prevent a flash.
       (function () {
         var t = "light";
         try {
-          t = localStorage.getItem("theme");
-          if (t !== "light" && t !== "dark") {
-            t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-          }
+          if (localStorage.getItem("theme") === "dark") t = "dark";
         } catch (e) {}
-        document.documentElement.dataset.theme = t || "light";
+        document.documentElement.dataset.theme = t;
       })();
     </script>
     <link rel="canonical" href="%VITE_SITE_URL%/" />

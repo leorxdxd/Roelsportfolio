@@ -10,7 +10,7 @@ Built with **React + TypeScript + Vite + SCSS**. There's no UI framework and no 
 - Typing headline, scroll-reveal animations, animated counters, page transitions, tech marquee
 - Cards that tilt toward the cursor with a spotlight effect
 - **Ctrl/⌘ + K command palette** to jump to any page or project
-- Light/dark mode (remembers the visitor's choice, follows their system setting by default)
+- Light/dark mode (light by default; remembers the visitor's choice)
 - Interactive "How I work" stepper, skills tabs, FAQ accordion, project filter + search
 - **Demo Theater:** video player + playlist for every project demo (local MP4 or YouTube)
 
