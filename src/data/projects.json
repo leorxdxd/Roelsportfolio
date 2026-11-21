@@ -1,0 +1,87 @@
+[
+  {
+    "slug": "it-helpdesk-ticketing-system",
+    "title": "IT Helpdesk Ticketing System",
+    "category": "Custom System",
+    "summary": "A web-based helpdesk where staff report IT issues and the IT team tracks, prioritizes, and resolves them in one place.",
+    "builtFor": "The IT office of a local school",
+    "role": "Design & full-stack development",
+    "overview": [
+      "IT requests used to arrive through chat messages, phone calls, and walk-ins, so issues were easy to lose and hard to follow up. This system gives every request a ticket with a category, priority, and status.",
+      "Staff submit tickets through a simple form. The IT team works from a dashboard that shows open, in-progress, and closed tickets at a glance, with charts that reveal which kinds of problems come up most often."
+    ],
+    "features": [
+      "Ticket submission with categories (network, printer, computer, LMS, database)",
+      "Status workflow: New → In Progress → Closed",
+      "Priority levels (low, medium, high) for faster triage",
+      "AI-assisted ticket categorization and prioritization",
+      "Admin dashboard with ticket status, history, priority, and category charts",
+      "Reports and user account management with roles",
+      "In-app notifications for new and updated tickets"
+    ],
+    "tech": ["PHP", "MySQL", "JavaScript", "Chart.js", "Bootstrap"],
+    "thumbnail": "thumbnail.webp",
+    "screenshots": [
+      { "file": "screenshot-1.webp", "caption": "Admin dashboard with ticket statistics" },
+      { "file": "screenshot-2.webp", "caption": "Ticket list with status and priority" },
+      { "file": "screenshot-3.webp", "caption": "Submitting a new ticket" }
+    ],
+    "video": { "file": "demo.mp4", "poster": "poster.webp" },
+    "links": { "live": "", "repo": "" }
+  },
+  {
+    "slug": "ai-plagiarism-checker",
+    "title": "AI Plagiarism & Paraphrasing Checker",
+    "category": "Web Application",
+    "summary": "Checks uploaded documents or pasted text for similarity and can paraphrase content before checking, returning a clear percentage score.",
+    "builtFor": "Teachers and students",
+    "role": "Design & development",
+    "overview": [
+      "Checking work for originality by hand is slow. This tool lets a user upload a document or paste text and get a similarity score in seconds.",
+      "An optional paraphrasing step rewrites the text before checking, which helps writers improve their wording and see how it changes the result."
+    ],
+    "features": [
+      "Upload a document or paste text directly",
+      "Similarity score shown as an easy-to-read percentage",
+      "Optional paraphrasing before the check",
+      "Text comparison powered by natural language processing",
+      "Clean, distraction-free single-page interface"
+    ],
+    "tech": ["Python", "Flask", "NLP / Machine Learning", "HTML & CSS", "JavaScript"],
+    "thumbnail": "thumbnail.webp",
+    "screenshots": [
+      { "file": "screenshot-1.webp", "caption": "Upload or paste text to check" },
+      { "file": "screenshot-2.webp", "caption": "Similarity result" }
+    ],
+    "video": { "file": "demo.mp4", "poster": "poster.webp" },
+    "links": { "live": "", "repo": "" }
+  },
+  {
+    "slug": "miromail",
+    "title": "MiroMail",
+    "category": "Web Application",
+    "summary": "An email composer connected to Gmail, with a rich-text mode, a visual design mode for branded emails, and scheduled sending.",
+    "builtFor": "Small businesses and teams that send branded emails",
+    "role": "Design & full-stack development",
+    "overview": [
+      "Designing a good-looking email usually means switching between a design tool and an email client. MiroMail puts both in one place.",
+      "Users sign in with Gmail, write in a familiar rich-text editor or switch to a visual design mode, and send immediately or schedule the email for later."
+    ],
+    "features": [
+      "Gmail integration for inbox, sent mail, drafts, and trash",
+      "Rich-text mode for everyday emails",
+      "Visual design mode for branded, designed emails",
+      "Scheduled sending with date and time picker",
+      "Clean dashboard layout with sidebar navigation"
+    ],
+    "tech": ["React", "Node.js", "Gmail API", "Quill editor"],
+    "thumbnail": "thumbnail.webp",
+    "screenshots": [
+      { "file": "screenshot-1.webp", "caption": "Compose email in text mode" },
+      { "file": "screenshot-2.webp", "caption": "Visual design mode" },
+      { "file": "screenshot-3.webp", "caption": "Scheduling an email" }
+    ],
+    "video": { "file": "demo.mp4", "poster": "poster.webp" },
+    "links": { "live": "", "repo": "" }
+  }
+]

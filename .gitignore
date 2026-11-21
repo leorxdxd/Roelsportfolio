@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Original (unoptimized) media moved here by `npm run media:optimize`
+media-originals/
+
+# Demo-video recording workspace
+recordings/
+
+# Local env overrides (never commit secrets)
+.env.local
+.env.*.local
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/*
+!.vscode/extensions.json
+*.log

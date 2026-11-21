@@ -1,54 +1,44 @@
-import React from "react";
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import '../assets/styles/Footer.scss';
+import { Link } from "react-router-dom";
+import { site } from "../data/site";
+import Icon from "./Icon";
 
-function Footer() {
+export default function Footer() {
   return (
-    <footer className="footer-container">
-      <div className="social-links">
-        <a
-          href="https://github.com/leorxdxd"
-          target="_blank"
-          rel="noreferrer"
-          className="social-link"
-        >
-          <GitHubIcon className="social-icon" />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/roel-de-los-reyes-7a76412b6/"
-          target="_blank"
-          rel="noreferrer"
-          className="social-link"
-        >
-          <LinkedInIcon className="social-icon" />
-        </a>
+    <footer className="footer">
+      <div className="container footer__inner">
+        <div>
+          <Link to="/" className="brand">
+            <span className="brand__mark" aria-hidden="true">
+              {site.initials}
+            </span>
+            <span className="brand__name">{site.name}</span>
+          </Link>
+          <p className="footer__text">
+            © {new Date().getFullYear()} {site.name}. IT support, systems & websites.
+          </p>
+        </div>
+
+        <div className="footer__right">
+          <ul className="social-list" aria-label="Social links">
+            {site.socials.map((s) => (
+              <li key={s.label}>
+                <a
+                  href={s.url}
+                  className="icon-btn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${s.label} (opens in a new tab)`}
+                >
+                  <Icon name={s.icon} size={18} />
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a href="#main" className="back-to-top">
+            Back to top <Icon name="arrowUp" size={16} />
+          </a>
+        </div>
       </div>
-      <p className="footer-text">
-        A portfolio handcrafted, designed & built by{" "}
-        <a
-          href="https://github.com/leorxdxd/Roel-Portfolio"
-          target="_blank"
-          rel="noreferrer"
-          className="footer-link"
-        >
-          Roel S. Delos Reyes
-        </a>{" "}
-        with 💜
-      </p>
-      <p className="footer-credit">
-        Photos from{" "}
-        <a
-          href="https://pngtree.com"
-          target="_blank"
-          rel="noreferrer"
-          className="footer-link"
-        >
-          pngtree.com
-        </a>
-      </p>
     </footer>
   );
 }
-
-export default Footer;

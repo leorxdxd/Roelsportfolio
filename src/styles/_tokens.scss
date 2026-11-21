@@ -1,0 +1,37 @@
+// Design tokens: change the accent color here and it updates everywhere.
+:root {
+  --color-bg: #ffffff;
+  --color-bg-soft: #f8fafc;
+  --color-bg-accent: #eff6ff;
+  --color-text: #0f172a;
+  --color-text-muted: #475569; // 7.6:1 on white
+  --color-text-subtle: #64748b; // 4.8:1 on white
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+
+  --color-accent: #2563eb; // 5.2:1 on white (WCAG AA)
+  --color-accent-hover: #1d4ed8;
+  --color-accent-soft: #dbeafe;
+
+  --color-success: #15803d;
+  --color-danger: #b91c1c;
+
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 20px;
+
+  --shadow-sm: 0 1px 2px rgb(15 23 42 / 0.06);
+  --shadow: 0 1px 3px rgb(15 23 42 / 0.05), 0 10px 30px -10px rgb(15 23 42 / 0.12);
+  --shadow-lg: 0 24px 60px -20px rgb(15 23 42 / 0.25);
+
+  --nav-height: 68px;
+  --container: 1120px;
+  --gutter: 20px;
+  --section-y: clamp(72px, 10vw, 120px);
+}
+
+$bp-sm: 640px;
+$bp-md: 900px;

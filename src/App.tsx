@@ -1,43 +1,27 @@
-import React, { useEffect } from "react";
-import {
-  Main,
-  Timeline,
-  Expertise,
-  Project,
-  Gallery,
-  Achievements,
-  Testimonials, // Import Gallery component
-  Contact,
-  Navigation,
-  AboutMe,
-  Footer,
-} from "./components";
-import FadeIn from "./components/FadeIn";
-import "./index.scss";
+import { Route, Routes } from "react-router-dom";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import ScrollManager from "./components/ScrollManager";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import ProjectDetail from "./pages/ProjectDetail";
 
-function App() {
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, []);
-
+export default function App() {
   return (
-    <div className="main-container">
-      <Navigation />
-      <FadeIn transitionDuration={700}>
-        <Main />
-        <AboutMe />
-        <Expertise />
-        <Project />
-        <Timeline />
-        
-        <Gallery /> 
-        <Achievements />
-        <Testimonials />{/* Add Gallery section here */}
-        <Contact />
-      </FadeIn>
+    <>
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
+      <ScrollManager />
+      <Navbar />
+      <main id="main" tabIndex={-1}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects/:slug" element={<ProjectDetail />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
       <Footer />
-    </div>
+    </>
   );
 }
-
-export default App;
