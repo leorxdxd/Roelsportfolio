@@ -10,6 +10,20 @@
     />
     <meta name="author" content="Roel Delos Reyes" />
     <meta name="theme-color" content="#2563eb" />
+    <meta name="color-scheme" content="light dark" />
+    <script>
+      // Apply saved / system theme before the page paints (prevents a flash).
+      (function () {
+        var t = "light";
+        try {
+          t = localStorage.getItem("theme");
+          if (t !== "light" && t !== "dark") {
+            t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          }
+        } catch (e) {}
+        document.documentElement.dataset.theme = t || "light";
+      })();
+    </script>
     <link rel="canonical" href="%VITE_SITE_URL%/" />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />

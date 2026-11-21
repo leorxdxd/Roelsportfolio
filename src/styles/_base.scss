@@ -22,6 +22,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  overflow-x: clip;
 }
 
 h1,
@@ -29,7 +33,7 @@ h2,
 h3,
 h4 {
   margin: 0;
-  line-height: 1.2;
+  line-height: 1.15;
   letter-spacing: -0.02em;
   font-weight: 700;
   text-wrap: balance;
@@ -47,7 +51,8 @@ ol {
 
 img,
 video,
-svg {
+svg,
+iframe {
   display: block;
   max-width: 100%;
 }
@@ -75,19 +80,34 @@ textarea {
   color: inherit;
 }
 
+kbd {
+  display: inline-block;
+  min-width: 1.6em;
+  padding: 1px 6px;
+  border: 1px solid var(--color-border-strong);
+  border-bottom-width: 2px;
+  border-radius: 6px;
+  background: var(--color-surface);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
 :focus-visible {
   outline: 3px solid var(--color-accent);
   outline-offset: 3px;
   border-radius: 6px;
 }
 
-// Programmatic focus targets (sections, main) shouldn't draw an outline
 [tabindex="-1"]:focus {
   outline: none;
 }
 
 [id] {
-  scroll-margin-top: calc(var(--nav-height) + 12px);
+  scroll-margin-top: calc(var(--nav-height) + 20px);
 }
 
 ::selection {
@@ -125,12 +145,39 @@ textarea {
   padding: 10px 16px;
   border-radius: var(--radius-sm);
   background: var(--color-text);
-  color: #fff;
+  color: var(--color-bg);
   font-weight: 600;
 
   &:focus {
     top: 12px;
   }
+}
+
+/* Page transition */
+.page-transition {
+  animation: page-in 0.5s var(--ease) both;
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+/* Scroll reveal (only active when JS + motion are available) */
+.js-reveal [data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s var(--ease),
+    transform 0.7s var(--ease);
+  transition-delay: var(--d, 0ms);
+}
+
+.js-reveal [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -142,6 +189,7 @@ textarea {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }

@@ -39,12 +39,13 @@ for (const p of projects) {
     title: p.title,
     label: p.category,
   });
-  if (p.video?.poster) {
-    await write(path.join(dir, p.video.poster), {
+  for (const [i, v] of (p.videos ?? []).entries()) {
+    if (!v.poster || /^https?:/i.test(v.poster)) continue;
+    await write(path.join(dir, v.poster), {
       width: SIZES.poster[0],
       height: SIZES.poster[1],
-      title: p.title,
-      label: "Demo video",
+      title: v.title,
+      label: `Demo video ${i + 1}`,
     });
   }
   for (const [i, s] of (p.screenshots ?? []).entries()) {

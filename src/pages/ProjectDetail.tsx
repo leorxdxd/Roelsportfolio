@@ -1,10 +1,13 @@
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getProject, mediaUrl, projects } from "../data/projects";
+import { getProject, projects, resolveVideos } from "../data/projects";
 import { setPageMeta } from "../lib/meta";
-import DemoVideo from "../components/DemoVideo";
+import { delay } from "../lib/style";
+import CtaBand from "../components/CtaBand";
 import Icon from "../components/Icon";
+import PageHeader from "../components/PageHeader";
 import ScreenshotGallery from "../components/ScreenshotGallery";
+import VideoTheater from "../components/VideoTheater";
 import NotFound from "./NotFound";
 
 export default function ProjectDetail() {
@@ -20,73 +23,81 @@ export default function ProjectDetail() {
   const i = projects.indexOf(project);
   const prev = projects[(i - 1 + projects.length) % projects.length];
   const next = projects[(i + 1) % projects.length];
+  const videos = resolveVideos(project);
   const { live, repo } = project.links ?? {};
 
   return (
-    <article className="project-page" aria-labelledby="project-title">
-      <div className="container">
-        <Link to={{ pathname: "/", hash: "#projects" }} className="back-link">
-          <Icon name="arrowLeft" size={18} /> All projects
-        </Link>
-
-        <header className="project-hero">
-          <span className="tag">{project.category}</span>
-          <h1 id="project-title">{project.title}</h1>
-          <p className="project-hero__lead">{project.summary}</p>
-
-          <dl className="project-meta">
-            <div>
-              <dt>
-                <Icon name="users" size={16} /> Built for
-              </dt>
-              <dd>{project.builtFor}</dd>
-            </div>
-            <div>
-              <dt>
-                <Icon name="briefcase" size={16} /> My role
-              </dt>
-              <dd>{project.role}</dd>
-            </div>
-            <div>
-              <dt>
-                <Icon name="layers" size={16} /> Stack
-              </dt>
-              <dd>{project.tech.slice(0, 3).join(", ")}</dd>
-            </div>
-          </dl>
-
-          {(live || repo) && (
-            <div className="project-hero__actions">
-              {live && (
-                <a href={live} className="btn btn--primary" target="_blank" rel="noopener noreferrer">
-                  Live demo <Icon name="externalLink" size={16} />
-                </a>
-              )}
-              {repo && (
-                <a href={repo} className="btn btn--secondary" target="_blank" rel="noopener noreferrer">
-                  Source code <Icon name="github" size={16} />
-                </a>
-              )}
-            </div>
+    <>
+      <PageHeader
+        crumb={project.title}
+        parent={{ label: "Projects", to: "/projects" }}
+        eyebrow={project.category}
+        title={project.title}
+        lead={project.summary}
+      >
+        <dl className="project-meta" data-reveal style={delay(180)}>
+          <div>
+            <dt>
+              <Icon name="users" size={16} /> Built for
+            </dt>
+            <dd>{project.builtFor}</dd>
+          </div>
+          <div>
+            <dt>
+              <Icon name="briefcase" size={16} /> My role
+            </dt>
+            <dd>{project.role}</dd>
+          </div>
+          <div>
+            <dt>
+              <Icon name="layers" size={16} /> Stack
+            </dt>
+            <dd>{project.tech.slice(0, 3).join(", ")}</dd>
+          </div>
+        </dl>
+        <div className="project-hero__actions" data-reveal style={delay(240)}>
+          {videos.length > 0 && (
+            <a href="#demo" className="btn btn--primary">
+              <Icon name="play" size={16} /> Watch demo
+            </a>
           )}
-        </header>
+          {live && (
+            <a href={live} className="btn btn--secondary" target="_blank" rel="noopener noreferrer">
+              Live demo <Icon name="externalLink" size={16} />
+            </a>
+          )}
+          {repo && (
+            <a href={repo} className="btn btn--secondary" target="_blank" rel="noopener noreferrer">
+              Source code <Icon name="github" size={16} />
+            </a>
+          )}
+        </div>
+      </PageHeader>
 
-        {project.video && (
-          <section className="project-section" aria-labelledby="demo-title">
-            <h2 id="demo-title" className="visually-hidden">
-              Demo video
+      <div className="container project-page">
+        {project.highlights && project.highlights.length > 0 && (
+          <ul className="highlights" aria-label="System highlights">
+            {project.highlights.map((h, j) => (
+              <li key={h.label} className="highlight" data-reveal style={delay(j * 70)}>
+                <span className="highlight__value">{h.value}</span>
+                <span className="highlight__label">{h.label}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {videos.length > 0 && (
+          <section id="demo" className="project-section" tabIndex={-1} aria-labelledby="demo-title" data-reveal>
+            <h2 id="demo-title" className="project-section__title">
+              <Icon name="film" size={22} /> Demo video{videos.length > 1 ? "s" : ""}
             </h2>
-            <DemoVideo
-              src={mediaUrl(project, project.video.file)}
-              poster={mediaUrl(project, project.video.poster)}
-              title={project.title}
-            />
+            <VideoTheater videos={videos} headingLevel={3} showProjectLink={false} />
           </section>
         )}
 
         <div className="project-body">
           <div>
-            <section aria-labelledby="overview-title">
+            <section aria-labelledby="overview-title" data-reveal>
               <h2 id="overview-title">Overview</h2>
               <div className="prose">
                 {project.overview.map((p) => (
@@ -95,12 +106,14 @@ export default function ProjectDetail() {
               </div>
             </section>
 
-            <section aria-labelledby="features-title" className="project-body__block">
+            <section aria-labelledby="features-title" className="project-body__block" data-reveal>
               <h2 id="features-title">Key features</h2>
-              <ul className="checklist">
-                {project.features.map((f) => (
-                  <li key={f}>
-                    <Icon name="check" size={18} />
+              <ul className="feature-grid">
+                {project.features.map((f, j) => (
+                  <li key={f} className="feature" data-reveal style={delay(j * 50)}>
+                    <span className="feature__icon" aria-hidden="true">
+                      <Icon name="check" size={16} />
+                    </span>
                     {f}
                   </li>
                 ))}
@@ -108,7 +121,7 @@ export default function ProjectDetail() {
             </section>
           </div>
 
-          <aside className="project-aside" aria-labelledby="tech-title">
+          <aside className="project-aside" aria-labelledby="tech-title" data-reveal>
             <div className="card">
               <h2 id="tech-title" className="card__label">
                 Tech stack
@@ -121,15 +134,18 @@ export default function ProjectDetail() {
                 ))}
               </ul>
               <p className="project-aside__note">
-                Shown with sample data only. No real client or user information.
+                <Icon name="shield" size={14} /> Shown with sample data only. No real client or user
+                information.
               </p>
             </div>
           </aside>
         </div>
 
         {project.screenshots.length > 0 && (
-          <section className="project-section" aria-labelledby="shots-title">
-            <h2 id="shots-title">Screenshots</h2>
+          <section className="project-section" aria-labelledby="shots-title" data-reveal>
+            <h2 id="shots-title" className="project-section__title">
+              Screenshots
+            </h2>
             <ScreenshotGallery project={project} />
           </section>
         )}
@@ -151,6 +167,8 @@ export default function ProjectDetail() {
           </nav>
         )}
       </div>
-    </article>
+
+      <CtaBand title="Want a system like this for your team?" />
+    </>
   );
 }

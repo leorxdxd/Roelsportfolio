@@ -5,12 +5,12 @@ const prefersReducedMotion = () =>
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /**
- * Scrolls to `#hash` targets (smoothly) after navigation, and to the top on
- * page changes. Moves keyboard focus to the target so screen-reader and
- * keyboard users land in the right place.
+ * Scrolls to the top on page changes and to `#hash` targets (smoothly).
+ * Moves keyboard focus to the target so keyboard and screen-reader users
+ * land in the right place. Query-string changes (filters) don't scroll.
  */
 export default function ScrollManager() {
-  const { pathname, hash, key } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
     if (!hash) {
@@ -22,10 +22,10 @@ export default function ScrollManager() {
       const el = document.getElementById(id);
       if (!el) return;
       el.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth", block: "start" });
-      if (el.tabIndex >= -1 && el.hasAttribute("tabindex")) el.focus({ preventScroll: true });
-    }, 0);
+      if (el.hasAttribute("tabindex")) el.focus({ preventScroll: true });
+    }, 60);
     return () => window.clearTimeout(timer);
-  }, [pathname, hash, key]);
+  }, [pathname, hash]);
 
   return null;
 }

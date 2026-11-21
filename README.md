@@ -3,13 +3,23 @@
 Personal business site for **IT Technical Support | Web & Systems Developer** services.
 Built with **React + TypeScript + Vite + SCSS**. There's no UI framework and no backend.
 
-- Sticky navigation, smooth scrolling, fully responsive (mobile, tablet, desktop)
-- Sections: Hero, About, Services, Projects, Skills, Contact
-- Each project has its own page (`/projects/<slug>`) with an overview, features, tech stack, a screenshot gallery (lightbox), and a demo video
-- All projects come from **one file**: [`src/data/projects.json`](src/data/projects.json)
-- Lazy-loaded images and videos, with clean placeholders until real media is added
-- SEO: title, meta description, Open Graph/Twitter tags, JSON-LD, alt text on every image
-- Accessibility: skip link, keyboard-friendly menu and lightbox, visible focus states, WCAG AA contrast (checked with axe: 0 violations)
+**Pages:** Home · About · Services · Projects · Project case study (`/projects/<slug>`) · Demo Theater (`/demos`) · Contact
+
+**Interactive features**
+- Live, animated helpdesk dashboard in the hero (sample data) that shows the kind of systems you build
+- Typing headline, scroll-reveal animations, animated counters, page transitions, tech marquee
+- Cards that tilt toward the cursor with a spotlight effect
+- **Ctrl/⌘ + K command palette** to jump to any page or project
+- Light/dark mode (remembers the visitor's choice, follows their system setting by default)
+- Interactive "How I work" stepper, skills tabs, FAQ accordion, project filter + search
+- **Demo Theater:** video player + playlist for every project demo (local MP4 or YouTube)
+
+**Quality**
+- All projects and videos come from **one file**: [`src/data/projects.json`](src/data/projects.json)
+- Videos load only when played; images are lazy-loaded with placeholders until real media is added
+- Animations respect "reduce motion" settings and pause in background tabs
+- SEO: per-page titles and descriptions, Open Graph/Twitter tags, JSON-LD, alt text
+- Accessibility: skip link, full keyboard support, visible focus, WCAG AA contrast in both themes (axe: 0 violations on every page)
 
 ---
 
@@ -39,7 +49,8 @@ Other commands:
 | What | File |
 | --- | --- |
 | Name, title, email, phone, social links | [`src/data/site.ts`](src/data/site.ts) |
-| About, Services, Skills text | [`src/data/content.ts`](src/data/content.ts) |
+| About, values, services, process steps, skills, FAQ | [`src/data/content.ts`](src/data/content.ts) |
+| Navigation pages | `pages` in [`src/data/site.ts`](src/data/site.ts) |
 | Projects | [`src/data/projects.json`](src/data/projects.json) |
 | Colors, spacing, fonts | [`src/styles/_tokens.scss`](src/styles/_tokens.scss) |
 | SEO / social tags | [`index.html`](index.html) and [`.env`](.env) (`VITE_SITE_URL`) |
@@ -61,17 +72,54 @@ Other commands:
      "builtFor": "A small retail business",
      "role": "Design & full-stack development",
      "overview": ["Paragraph 1", "Paragraph 2"],
+     "highlights": [{ "label": "User roles", "value": "3" }],
      "features": ["Feature one", "Feature two"],
      "tech": ["PHP", "MySQL"],
      "thumbnail": "thumbnail.webp",
      "screenshots": [{ "file": "screenshot-1.webp", "caption": "Dashboard" }],
-     "video": { "file": "demo.mp4", "poster": "poster.webp" },
+     "videos": [
+       {
+         "title": "Full walkthrough",
+         "src": "demo.mp4",
+         "poster": "poster.webp",
+         "description": "What the viewer will see.",
+         "duration": "2:45"
+       }
+     ],
      "links": { "live": "", "repo": "" }
    }
    ```
 
 2. Create the folder `public/assets/projects/<slug>/` and add your media (see below).
 3. Optional: run `npm run media:placeholders` to fill any gaps with placeholders.
+
+The project automatically appears on Home, Projects, the footer, the command palette, and
+(if it has videos) the Demo Theater.
+
+## Adding demo videos
+
+Each project has a `videos` list, so you can add **as many videos per project as you like**.
+They show up on the project's page and on the **Demos** page (`/demos`) in a player with a playlist.
+
+**Option A: upload an MP4 (best for short demos)**
+1. Put the file in the project folder, e.g. `public/assets/projects/miromail/demo.mp4`
+   (or `demo-2.mp4`, `demo-3.mp4`, …).
+2. Add (or update) an entry in that project's `videos` list with `"src": "demo.mp4"`.
+3. Add a cover image (`poster.webp`, 1280 × 720) and set `"poster": "poster.webp"`.
+   Keep each MP4 **under 20 MB** (720p/1080p, H.264).
+
+**Option B: YouTube (best for long or large videos)**
+Upload the video to YouTube (Unlisted is fine) and paste the link as `src`:
+
+```json
+{ "title": "Full walkthrough", "src": "https://youtu.be/VIDEO_ID", "duration": "6:10" }
+```
+
+The poster is taken from YouTube automatically. The embed uses `youtube-nocookie.com` and only
+loads when the visitor presses play.
+
+Until a local MP4 exists, the player shows **"Demo video coming soon"** and the playlist shows a
+**Soon** badge, so the site never looks broken.
 
 ### Media files per project
 
@@ -81,13 +129,13 @@ Put these in **`public/assets/projects/<slug>/`**:
 | --- | --- | --- |
 | `thumbnail.webp` | 1200 × 750 (16:10) | Project card |
 | `screenshot-1.webp`, `screenshot-2.webp`, … | 1600 × 1000 (16:10) | Screenshot gallery |
-| `poster.webp` | 1280 × 720 (16:9) | Video cover image |
-| `demo.mp4` | 720p or 1080p, H.264, under 20 MB | Demo video |
+| `poster.webp`, `poster-2.webp`, … | 1280 × 720 (16:9) | Video cover images |
+| `demo.mp4`, `demo-2.mp4`, … | 720p or 1080p, H.264, under 20 MB | Demo videos |
 
 Current folders:
 
 ```
-public/assets/projects/it-helpdesk-ticketing-system/   thumbnail, poster, screenshot-1..3, demo.mp4
+public/assets/projects/it-helpdesk-ticketing-system/   thumbnail, poster, poster-2, screenshot-1..3, demo.mp4, demo-2.mp4
 public/assets/projects/ai-plagiarism-checker/          thumbnail, poster, screenshot-1..2, demo.mp4
 public/assets/projects/miromail/                       thumbnail, poster, screenshot-1..3, demo.mp4
 ```
@@ -181,8 +229,8 @@ public/                 favicon, icons, og-image, robots, _redirects
 scripts/                image/placeholder/brand generators
 src/
   data/                 site.ts, content.ts, projects.json (all content)
-  components/           Navbar, Footer, Icon, ProjectCard, DemoVideo, ScreenshotGallery, …
-  sections/             Hero, About, Services, Projects, Skills, Contact
-  pages/                Home, ProjectDetail, NotFound
+  components/           Navbar, CommandPalette, LiveDashboard, VideoPlayer, VideoTheater, Tabs, …
+  pages/                Home, About, Services, Projects, ProjectDetail, Demos, Contact, NotFound
+  lib/                  hooks, theme, video helpers
   styles/               design tokens + SCSS partials
 ```

@@ -10,6 +10,12 @@
       "IT requests used to arrive through chat messages, phone calls, and walk-ins, so issues were easy to lose and hard to follow up. This system gives every request a ticket with a category, priority, and status.",
       "Staff submit tickets through a simple form. The IT team works from a dashboard that shows open, in-progress, and closed tickets at a glance, with charts that reveal which kinds of problems come up most often."
     ],
+    "highlights": [
+      { "label": "Ticket statuses", "value": "3" },
+      { "label": "Issue categories", "value": "5" },
+      { "label": "Dashboard charts", "value": "4" },
+      { "label": "Smart triage", "value": "AI-assisted" }
+    ],
     "features": [
       "Ticket submission with categories (network, printer, computer, LMS, database)",
       "Status workflow: New → In Progress → Closed",
@@ -26,7 +32,22 @@
       { "file": "screenshot-2.webp", "caption": "Ticket list with status and priority" },
       { "file": "screenshot-3.webp", "caption": "Submitting a new ticket" }
     ],
-    "video": { "file": "demo.mp4", "poster": "poster.webp" },
+    "videos": [
+      {
+        "title": "Full system walkthrough",
+        "src": "demo.mp4",
+        "poster": "poster.webp",
+        "description": "A staff member submits a ticket, then the IT admin triages, updates, and closes it.",
+        "duration": ""
+      },
+      {
+        "title": "Admin dashboard & reports",
+        "src": "demo-2.mp4",
+        "poster": "poster-2.webp",
+        "description": "Live ticket statistics, charts by category and priority, and report generation.",
+        "duration": ""
+      }
+    ],
     "links": { "live": "", "repo": "" }
   },
   {
@@ -39,6 +60,12 @@
     "overview": [
       "Checking work for originality by hand is slow. This tool lets a user upload a document or paste text and get a similarity score in seconds.",
       "An optional paraphrasing step rewrites the text before checking, which helps writers improve their wording and see how it changes the result."
+    ],
+    "highlights": [
+      { "label": "Input", "value": "File or text" },
+      { "label": "Output", "value": "Similarity %" },
+      { "label": "Extra", "value": "Paraphraser" },
+      { "label": "Engine", "value": "NLP" }
     ],
     "features": [
       "Upload a document or paste text directly",
@@ -53,7 +80,15 @@
       { "file": "screenshot-1.webp", "caption": "Upload or paste text to check" },
       { "file": "screenshot-2.webp", "caption": "Similarity result" }
     ],
-    "video": { "file": "demo.mp4", "poster": "poster.webp" },
+    "videos": [
+      {
+        "title": "Checking a document for plagiarism",
+        "src": "demo.mp4",
+        "poster": "poster.webp",
+        "description": "Uploading a document, optional paraphrasing, and reading the similarity score.",
+        "duration": ""
+      }
+    ],
     "links": { "live": "", "repo": "" }
   },
   {
@@ -66,6 +101,12 @@
     "overview": [
       "Designing a good-looking email usually means switching between a design tool and an email client. MiroMail puts both in one place.",
       "Users sign in with Gmail, write in a familiar rich-text editor or switch to a visual design mode, and send immediately or schedule the email for later."
+    ],
+    "highlights": [
+      { "label": "Integration", "value": "Gmail API" },
+      { "label": "Editor modes", "value": "2" },
+      { "label": "Sending", "value": "Now or scheduled" },
+      { "label": "Mail folders", "value": "5" }
     ],
     "features": [
       "Gmail integration for inbox, sent mail, drafts, and trash",
@@ -81,7 +122,15 @@
       { "file": "screenshot-2.webp", "caption": "Visual design mode" },
       { "file": "screenshot-3.webp", "caption": "Scheduling an email" }
     ],
-    "video": { "file": "demo.mp4", "poster": "poster.webp" },
+    "videos": [
+      {
+        "title": "Composing and scheduling an email",
+        "src": "demo.mp4",
+        "poster": "poster.webp",
+        "description": "Writing in text mode, designing in visual mode, and scheduling the send.",
+        "duration": ""
+      }
+    ],
     "links": { "live": "", "repo": "" }
   }
 ]
