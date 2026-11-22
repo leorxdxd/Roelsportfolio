@@ -1,4 +1,4 @@
-# Portfolio showreel (Remotion)
+# Portfolio media: showreel, project images, hero portrait
 
 A 35-second, 1080p promo video built entirely in code with [Remotion](https://www.remotion.dev): React components rendered to MP4.
 Everything in it (UI, cursor, transitions, music, sound effects) is generated, so it contains **no real client data**.
@@ -51,6 +51,17 @@ npm run images -- miromail    # only ids containing "miromail"
 ```
 
 Open `npm run studio` and look in the **Website-images** folder to preview and tweak them live.
+
+## Hero portrait (3D)
+
+```bash
+npm run portrait -- path/to/photo.jpg                     # cut-out + depth map → ../public/assets/portrait/
+npm run portrait -- path/to/photo.jpg --crop-bottom 0.15  # cut 15% off the bottom first
+npm run portrait -- path/to/photo.jpg --smooth 2          # smoother cut-out edge (for small or compressed photos)
+```
+
+`scripts/portrait.mjs` uses MODNet (cut-out) and Depth Anything V2 small (depth) through transformers.js.
+They download once and run locally. Use a chest-up photo on a plain background, at least 1000 px tall.
 
 ## Preview stills
 

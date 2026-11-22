@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { galleryItems, projects } from "../data/projects";
 import Icon from "./Icon";
@@ -37,7 +37,7 @@ export default function WorkGallery() {
 
       <ul className="shots" role="list">
         {shown.map((it, i) => (
-          <li key={it.src} className={i === 0 ? "shots__item shots__item--featured" : "shots__item"}>
+          <li key={it.src} className={i === 0 ? "shots__item shots__item--featured" : "shots__item"} style={{ "--i": i } as CSSProperties}>
             <button type="button" className="shot" onClick={() => setOpen(i)}>
               <MediaImage src={it.src} alt="" width={1600} height={1000} />
               <span className="shot__caption">

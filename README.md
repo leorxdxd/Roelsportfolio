@@ -1,13 +1,21 @@
 # Roel Delos Reyes: Business Portfolio
 
-Personal business site for **IT Technical Support | Web & Systems Developer** services.
-Built with **React + TypeScript + Vite + SCSS**. There's no UI framework and no backend.
+Portfolio and business site for **Roel Delos Reyes, Software Developer** (web apps and business systems,
+with IT support). Built with **React + TypeScript + Vite + SCSS**. There's no UI framework and no backend.
 
 **Pages:** Home · About · Services · Projects · Project case study (`/projects/<slug>`) · Demo Theater (`/demos`) · Contact
 
+**Look:** paper and ink with one lime accent, Schibsted Grotesk for text and JetBrains Mono for labels and code.
+The Home page is presented as a site being built live, like a shared design file.
+
 **Interactive features**
-- Hero showcase: screens from each project in layered browser windows. It cycles through projects,
-  pauses on hover, and has keyboard-accessible tabs and a pause button
+- **Live-build cursors (Home):** four labelled cursors (design, front end, back end, testing) put each section
+  together as it scrolls into view: they drag selection boxes, drop images onto wireframes and type the
+  headings. Idle cursors step aside from the visitor's mouse. The **Cursors** button (bottom right) hides them
+- **3D hero portrait:** your photo, cut out and given a depth map, drawn with WebGL so it turns slightly with
+  the mouse (and drifts on phones), inside a small 3D scene of project windows, code and a test result
+- **"How a feature gets built":** a scroll scene where code types itself in an editor, the tests run in the
+  terminal, then the app opens and the feature is used (one scene per project)
 - Screen gallery on the Home page with project filters and a full-size viewer (arrow keys, Esc)
 - Scroll-reveal animations, page transitions, and project cards that tilt toward the cursor
 - **Ctrl/⌘ + K command palette** to jump to any page or project
@@ -20,7 +28,7 @@ Built with **React + TypeScript + Vite + SCSS**. There's no UI framework and no 
 **Quality**
 - All projects and videos come from **one file**: [`src/data/projects.json`](src/data/projects.json)
 - Videos load only when played; images are lazy-loaded with placeholders until real media is added
-- Animations respect "reduce motion" settings and pause in background tabs
+- Animations respect "reduce motion" settings (no cursors, typing or 3D; everything is shown at once) and pause in background tabs
 - SEO: per-page titles and descriptions, Open Graph/Twitter tags, JSON-LD, alt text
 - Accessibility: skip link, full keyboard support, visible focus, WCAG AA contrast in both themes (axe: 0 violations on every page)
 
@@ -56,6 +64,8 @@ Other commands:
 | Navigation pages | `pages` in [`src/data/site.ts`](src/data/site.ts) |
 | Projects | [`src/data/projects.json`](src/data/projects.json) |
 | Showreel (file paths, duration, chapters) | [`src/data/showreel.ts`](src/data/showreel.ts) |
+| Code shown in the Home animations | [`src/data/build.ts`](src/data/build.ts) |
+| Hero portrait | see [Hero portrait](#hero-portrait-3d) below |
 | Colors, spacing, fonts | [`src/styles/_tokens.scss`](src/styles/_tokens.scss) |
 | SEO / social tags | [`index.html`](index.html) and [`.env`](.env) (`VITE_SITE_URL`) |
 
@@ -102,12 +112,12 @@ Other commands:
 2. Create the folder `public/assets/projects/<slug>/` and add your media (see below).
 3. Optional: run `npm run media:placeholders` to fill any gaps with placeholders.
 
-The project automatically appears on Home (hero showcase, selected work, gallery), Projects, the
-footer, the command palette, and (if it has videos) the Demo Theater.
+The project automatically appears on Home (selected work, gallery), Projects, the footer, the command palette,
+and (if it has videos) the Demo Theater. To give it a scene in "How a feature gets built", add an entry to
+`scenes` in [`src/data/build.ts`](src/data/build.ts).
 
-- `short`: short name used in the hero tabs and gallery filters.
-- `showcase` (optional): two screenshots for the hero (main and second window) and the address shown
-  in the browser frame. Projects without it are left out of the hero.
+- `short`: short name used in tabs and gallery filters.
+- `showcase` (optional): the address shown in browser frames for this project (`url`) and two screenshots.
 - `"kind": "code"` on a screenshot puts it under the gallery's "Code & database" filter.
 
 ## Adding demo videos
@@ -175,6 +185,22 @@ If a file is missing, the site shows a neutral placeholder. If `demo.mp4` is mis
 "Demo video coming soon".
 
 ---
+
+## Hero portrait (3D)
+
+The Home page portrait is made from one photo by `npm run portrait` (in [`video/`](video/)). It cuts the person
+out (MODNet) and estimates depth (Depth Anything V2 small). Both models run on your computer, and the photo is
+not uploaded anywhere.
+
+```bash
+cd video
+npm run portrait -- path/to/photo.jpg                     # → public/assets/portrait/ + src/data/portrait.json
+npm run portrait -- path/to/photo.jpg --crop-bottom 0.15  # cut 15% off the bottom first (e.g. a watermark)
+```
+
+Then commit and push. For the best result use a **chest-up photo, facing the camera, on a plain background, at
+least 1000 px tall**, with no logos, school uniforms, ID lanyards or watermarks. AI-generated portraits of
+yourself work too; keep them true to how you look, since clients will meet you.
 
 ## Showreel (intro video)
 
@@ -270,15 +296,16 @@ In the repo settings, set **Pages → Source → GitHub Actions**. Set
 index.html              SEO tags, fonts, hidden Netlify form
 public/                 favicon, icons, og-image, robots, _redirects
   assets/profile.webp
+  assets/portrait/          hero portrait (cut-out + depth map)
   assets/placeholder.webp
   assets/projects/<slug>/   project media
   assets/showreel/          showreel video + poster
 scripts/                image/placeholder/brand generators
-video/                  Remotion project for the showreel and the project images (separate; not part of the site build)
+video/                  Remotion project for the showreel, project images and the hero portrait script (separate; not part of the site build)
 src/
   data/                 site.ts, content.ts, projects.json (all content)
-  components/           Navbar, CommandPalette, HeroShowcase, WorkGallery, Lightbox, VideoTheater, Tabs, …
+  components/           Navbar, CommandPalette, BuildCursors, HeroStage, Portrait3D, CodeRun, TypeText, WorkGallery, …
   pages/                Home, About, Services, Projects, ProjectDetail, Demos, Contact, NotFound
-  lib/                  hooks, theme, video helpers
+  lib/                  cursors (live-build engine), useBuild, highlight, hooks, theme, video helpers
   styles/               design tokens + SCSS partials
 ```

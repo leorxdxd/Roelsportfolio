@@ -9,7 +9,8 @@
     "still": "remotion still Showreel out/still.png",
     "typecheck": "tsc",
     "site": "npm run render && node scripts/publish-to-site.mjs",
-    "images": "node scripts/render-images.mjs"
+    "images": "node scripts/render-images.mjs",
+    "portrait": "node scripts/portrait.mjs"
   },
   "dependencies": {
     "@remotion/cli": "4.0.545",
@@ -20,6 +21,7 @@
     "remotion": "4.0.545"
   },
   "devDependencies": {
+    "@huggingface/transformers": "4.3.1",
     "@types/react": "19.3.0",
     "typescript": "7.0.2"
   }

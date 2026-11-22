@@ -18,7 +18,7 @@ const Frame: React.FC<{ comp: React.FC; width: number; x: number; y: number; url
         borderRadius: Math.max(8, width * 0.014),
         overflow: "hidden",
         background: dark ? "#0b1019" : "#fff",
-        boxShadow: shadow ?? "0 40px 80px -30px rgba(15,23,42,0.45), 0 0 0 1px rgba(15,23,42,0.08)",
+        boxShadow: shadow ?? "0 40px 80px -30px rgba(17,17,17,0.45), 0 0 0 1px rgba(17,17,17,0.1)",
       }}
     >
       {!dark && (
@@ -65,10 +65,15 @@ export const Cover: React.FC<{
   const secondW = Math.round(w * 0.43);
   const secondH = secondW * (SH / SW) + (secondDark ? 0 : secondW * 0.036);
   return (
-    <AbsoluteFill style={{ background: `linear-gradient(140deg, ${brand.soft} 0%, #ffffff 55%, ${brand.soft} 100%)`, overflow: "hidden" }}>
-      <AbsoluteFill style={{ backgroundImage: "radial-gradient(rgba(15,23,42,0.07) 1.2px, transparent 1.2px)", backgroundSize: "22px 22px" }} />
-      <div style={{ position: "absolute", width: w * 0.9, height: w * 0.9, right: -w * 0.3, top: -w * 0.35, borderRadius: "50%", background: `radial-gradient(circle, ${brand.color}33, transparent 65%)` }} />
-      <div style={{ position: "absolute", width: w * 0.7, height: w * 0.7, left: -w * 0.25, bottom: -w * 0.4, borderRadius: "50%", background: `radial-gradient(circle, ${brand.color}22, transparent 65%)` }} />
+    <AbsoluteFill style={{ background: "#e9e9e3", overflow: "hidden" }}>
+      {/* design-canvas grid, matching the website */}
+      <AbsoluteFill
+        style={{
+          backgroundImage: "linear-gradient(rgba(17,17,17,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(17,17,17,0.06) 1px, transparent 1px)",
+          backgroundSize: `${Math.round(w / 24)}px ${Math.round(w / 24)}px`,
+        }}
+      />
+      <div style={{ position: "absolute", left: 0, top: 0, width: Math.round(w * 0.012), height: "100%", background: brand.color }} />
       <Frame comp={main} width={mainW} x={Math.round(w * 0.06)} y={Math.round(h * 0.09)} url={url} />
       <Frame
         comp={second}
@@ -77,7 +82,7 @@ export const Cover: React.FC<{
         y={h - secondH - Math.round(h * 0.06)}
         url={secondUrl ?? url}
         dark={secondDark}
-        shadow="0 50px 90px -30px rgba(15,23,42,0.6), 0 0 0 1px rgba(15,23,42,0.1)"
+        shadow="0 50px 90px -30px rgba(17,17,17,0.6), 0 0 0 1px rgba(17,17,17,0.12)"
       />
     </AbsoluteFill>
   );

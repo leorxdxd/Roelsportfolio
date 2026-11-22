@@ -15,7 +15,6 @@ export default function CtaBand({
     <section className="section cta-section" aria-labelledby="cta-title">
       <div className="container">
         <div className="cta-band" data-reveal>
-          <div className="cta-band__glow" aria-hidden="true" />
           <div className="cta-band__text">
             <h2 id="cta-title">{title}</h2>
             <p>{lead}</p>
