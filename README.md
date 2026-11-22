@@ -13,6 +13,8 @@ Built with **React + TypeScript + Vite + SCSS**. There's no UI framework and no 
 - Light/dark mode (light by default; remembers the visitor's choice)
 - Interactive "How I work" stepper, skills tabs, FAQ accordion, project filter + search
 - **Demo Theater:** video player + playlist for every project demo (local MP4 or YouTube)
+- **Showreel** on the Home page: a 35-second intro video with clickable chapters, a "Watch my reel"
+  button in the hero, and a "Watch my showreel" command (made in code with Remotion, see [`video/`](video/))
 
 **Quality**
 - All projects and videos come from **one file**: [`src/data/projects.json`](src/data/projects.json)
@@ -52,6 +54,7 @@ Other commands:
 | About, values, services, process steps, skills, FAQ | [`src/data/content.ts`](src/data/content.ts) |
 | Navigation pages | `pages` in [`src/data/site.ts`](src/data/site.ts) |
 | Projects | [`src/data/projects.json`](src/data/projects.json) |
+| Showreel (file paths, duration, chapters) | [`src/data/showreel.ts`](src/data/showreel.ts) |
 | Colors, spacing, fonts | [`src/styles/_tokens.scss`](src/styles/_tokens.scss) |
 | SEO / social tags | [`index.html`](index.html) and [`.env`](.env) (`VITE_SITE_URL`) |
 
@@ -149,6 +152,25 @@ If a file is missing, the site shows a neutral placeholder. If `demo.mp4` is mis
 
 ---
 
+## Showreel (intro video)
+
+The showreel is a personal intro, **not a project demo**, so it isn't in `projects.json` or on the Demos page.
+It lives in `public/assets/showreel/` (`showreel.mp4` + `poster.webp`) and appears on the Home page.
+
+The video is built in code in [`video/`](video/) (Remotion). To change it and update the site:
+
+```bash
+cd video
+npm install          # first time only
+npm run studio       # preview and edit
+npm run site         # render → copy showreel.mp4 + poster.webp into public/assets/showreel/
+```
+
+Then commit and push. If you change scene timing (`video/src/timeline.json`), update the chapter times in
+[`src/data/showreel.ts`](src/data/showreel.ts). Photos, music and text are explained in [`video/README.md`](video/README.md).
+
+---
+
 ## Privacy rules (important)
 
 Everything in this repo is public once deployed.
@@ -226,7 +248,9 @@ public/                 favicon, icons, og-image, robots, _redirects
   assets/profile.webp
   assets/placeholder.webp
   assets/projects/<slug>/   project media
+  assets/showreel/          showreel video + poster
 scripts/                image/placeholder/brand generators
+video/                  Remotion project for the showreel (separate; not part of the site build)
 src/
   data/                 site.ts, content.ts, projects.json (all content)
   components/           Navbar, CommandPalette, LiveDashboard, VideoPlayer, VideoTheater, Tabs, …

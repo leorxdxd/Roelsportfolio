@@ -79,7 +79,8 @@
   &__actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    align-items: center;
+    gap: 18px 12px;
     margin-top: 34px;
   }
 

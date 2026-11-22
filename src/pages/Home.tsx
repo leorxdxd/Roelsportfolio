@@ -13,8 +13,10 @@ import Marquee from "../components/Marquee";
 import ProcessSteps from "../components/ProcessSteps";
 import ProjectCard from "../components/ProjectCard";
 import SectionHeader from "../components/SectionHeader";
+import Showreel, { playShowreel } from "../components/Showreel";
 import TypeRotator from "../components/TypeRotator";
 import VideoPlayer from "../components/VideoPlayer";
+import { showreel, showreelSeconds } from "../data/showreel";
 
 const ROTATING = ["custom systems", "helpdesk tools", "business websites", "dashboards", "IT solutions"];
 
@@ -76,6 +78,16 @@ function Hero() {
             <Link to="/contact" className="btn btn--secondary btn--lg">
               Contact Me
             </Link>
+            <button type="button" className="reel-link" onClick={() => playShowreel()}>
+              <span className="reel-link__icon" aria-hidden="true">
+                <Icon name="play" size={14} />
+              </span>
+              Watch my reel
+              <span className="reel-link__time" aria-hidden="true">
+                {showreel.duration}
+              </span>
+              <span className="visually-hidden"> ({showreelSeconds}-second video)</span>
+            </button>
           </div>
 
           <ul className="hero__meta" data-reveal style={delay(300)}>
@@ -124,6 +136,26 @@ function Stats() {
         </ul>
       </div>
       <Marquee items={[...allTech, ...skills[2].items, "Networking", "Help desk"]} label="Technologies I work with" />
+    </section>
+  );
+}
+
+function ShowreelSection() {
+  return (
+    <section className="section reel-section" aria-labelledby="home-reel-title">
+      <div className="reel-section__glow" aria-hidden="true" />
+      <div className="container">
+        <SectionHeader
+          eyebrow="Showreel"
+          title={`${showreelSeconds} seconds. Everything I do.`}
+          id="home-reel-title"
+          lead="A quick, sound-on look at the problems I solve, the systems I build, and how we can work together. Tap a chapter to jump ahead."
+          center
+        />
+        <div data-reveal>
+          <Showreel />
+        </div>
+      </div>
     </section>
   );
 }
@@ -258,6 +290,7 @@ export default function Home() {
     <>
       <Hero />
       <Stats />
+      <ShowreelSection />
       <ServicesPreview />
       <FeaturedProjects />
       <DemoSpotlight />

@@ -1,0 +1,25 @@
+{
+  "name": "roel-portfolio-video",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "audio": "node scripts/make-audio.mjs",
+    "studio": "npm run audio && remotion studio",
+    "render": "npm run audio && remotion render Showreel out/showreel.mp4 --codec=h264 --crf=22",
+    "still": "remotion still Showreel out/still.png",
+    "typecheck": "tsc",
+    "site": "npm run render && node scripts/publish-to-site.mjs"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.545",
+    "@remotion/google-fonts": "4.0.545",
+    "@remotion/transitions": "4.0.545",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "remotion": "4.0.545"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "typescript": "7.0.2"
+  }
+}
