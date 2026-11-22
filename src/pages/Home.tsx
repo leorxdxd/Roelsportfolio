@@ -45,8 +45,9 @@ function Hero() {
             eager
           />
           <p className="hero__lead">
-            I design, code and deploy custom software for schools and small businesses: helpdesks, dashboards, email
-            tools and websites. My IT support background means I also know the hardware and networks it runs on.
+            I design, code and deploy custom software for clinics, property owners, schools and small businesses:
+            records systems, portals, automations and websites. My IT support background means I also know the hardware
+            and networks it runs on.
           </p>
           <div className="hero__actions">
             <Link to="/projects" className="btn btn--primary btn--lg">
@@ -165,6 +166,35 @@ function WorkRow({ p, index }: { p: Project; index: number }) {
   );
 }
 
+function WorkCard({ p, index }: { p: Project; index: number }) {
+  const [ref, state] = useBuild<HTMLDivElement>(withCursor(["front", "test"], (id, el) => dropOnto(id, el, p.thumbnail)));
+  return (
+    <article className="work-card" aria-labelledby={`work-${p.slug}`}>
+      <Link to={`/projects/${p.slug}`} className="work-row__media" tabIndex={-1} aria-hidden="true">
+        <div ref={ref} className="work-row__frame" data-build={state}>
+          <span className="wire">
+            <span className="wire__label">{p.thumbnail} · 1200 × 750</span>
+          </span>
+          <MediaImage src={mediaUrl(p, p.thumbnail)} alt="" width={1200} height={750} />
+        </div>
+      </Link>
+      <div className="work-row__body" data-build={state}>
+        <p className="work-row__meta">
+          <span>0{index + 1}</span> {p.category}
+        </p>
+        <TypeText as="h3" id={`work-${p.slug}`} className="work-card__title" text={p.title} start={state !== "idle"} cursor="design" speed={24} />
+        <p className="work-row__summary">{p.summary}</p>
+        <Link to={`/projects/${p.slug}`} className="work-row__cta work-card__link">
+          View project<span className="visually-hidden">: {p.title}</span> <Icon name="arrowRight" size={16} />
+        </Link>
+      </div>
+    </article>
+  );
+}
+
+/** The first four projects get a full row; the rest are shown as smaller cards. */
+const FEATURED = 4;
+
 function SelectedWork() {
   return (
     <section className="section home-work" aria-labelledby="work-title">
@@ -182,10 +212,18 @@ function SelectedWork() {
           }
         />
         <div className="work-list">
-          {projects.map((p, n) => (
+          {projects.slice(0, FEATURED).map((p, n) => (
             <WorkRow key={p.slug} p={p} index={n} />
           ))}
         </div>
+        {projects.length > FEATURED && (
+          <div className="work-more">
+            <p className="work-more__label">More projects</p>
+            {projects.slice(FEATURED).map((p, n) => (
+              <WorkCard key={p.slug} p={p} index={FEATURED + n} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

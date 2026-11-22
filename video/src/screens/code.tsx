@@ -3,12 +3,14 @@ import React from "react";
 import { Icon, mono, Screen } from "./kit";
 import { fontFamily } from "../theme";
 
-export type Lang = "php" | "python" | "js";
+export type Lang = "php" | "python" | "js" | "ts" | "sql";
 
 const KEYWORDS: Record<Lang, string[]> = {
   php: ["function", "return", "if", "else", "null", "false", "true", "use", "namespace", "class", "public", "private", "new", "foreach", "as", "fn", "int", "string", "bool", "array", "require_once", "declare", "throw", "try", "catch"],
   python: ["from", "import", "def", "return", "if", "else", "elif", "for", "in", "and", "or", "not", "None", "True", "False", "with", "as", "class", "lambda", "try", "except", "raise"],
   js: ["import", "from", "export", "default", "const", "let", "async", "await", "function", "return", "if", "else", "for", "of", "new", "try", "catch", "throw", "true", "false", "null"],
+  ts: ["import", "from", "export", "default", "const", "let", "async", "await", "function", "return", "if", "else", "for", "of", "new", "try", "catch", "throw", "true", "false", "null", "type", "interface", "as", "extends", "break", "continue"],
+  sql: ["select", "from", "where", "and", "or", "not", "in", "is", "null", "on", "for", "to", "using", "with", "check", "create", "policy", "alter", "table", "enable", "row", "level", "security", "exists", "insert", "update", "delete", "trigger", "after", "before", "each", "execute", "function", "returns", "language", "as", "begin", "end", "references", "primary", "key", "default", "plan", "cascade", "or", "replace", "into", "values", "then", "if", "true", "false"],
 };
 
 const C = {
@@ -30,7 +32,7 @@ const C = {
 type Tok = { t: string; c: string; i?: boolean };
 
 function tokenize(code: string, lang: Lang): Tok[][] {
-  const comment = lang === "python" ? "#.*" : "\\/\\/.*";
+  const comment = lang === "python" ? "#.*" : lang === "sql" ? "--.*" : "\\/\\/.*";
   const re = new RegExp(
     [
       "\\/\\*[\\s\\S]*?\\*\\/",
@@ -50,7 +52,7 @@ function tokenize(code: string, lang: Lang): Tok[][] {
   );
   const raw = code.match(re) ?? [];
   const toks: Tok[] = raw.map((t, idx) => {
-    if (t.startsWith("/*") || t.startsWith("//") || (lang === "python" && t.startsWith("#") && !t.startsWith("#{")))
+    if (t.startsWith("/*") || t.startsWith("//") || (lang === "sql" && t.startsWith("--")) || (lang === "python" && t.startsWith("#") && !t.startsWith("#{")))
       return { t, c: C.comment, i: true };
     if (t.startsWith('"""')) return { t, c: C.comment, i: true };
     if (/^["'`]/.test(t)) return { t, c: C.string };
@@ -58,7 +60,7 @@ function tokenize(code: string, lang: Lang): Tok[][] {
     if (t.startsWith("@")) return { t, c: C.fn };
     if (/^\d/.test(t)) return { t, c: C.num };
     if (/^[A-Za-z_]/.test(t)) {
-      if (KEYWORDS[lang].includes(t)) return { t, c: C.keyword };
+      if (KEYWORDS[lang].includes(lang === "sql" ? t.toLowerCase() : t)) return { t, c: C.keyword };
       let j = idx + 1;
       while (raw[j] !== undefined && /^\s+$/.test(raw[j]) && !raw[j].includes("\n")) j++;
       if (raw[j] === "(") return { t, c: C.fn };
@@ -95,8 +97,8 @@ export const CodeEditor: React.FC<{
   branch?: string;
 }> = ({ project, file, path, lang, code, tree, tabs, terminal, highlightLine, branch = "main" }) => {
   const lines = tokenize(code, lang);
-  const langLabel = { php: "PHP", python: "Python", js: "JavaScript" }[lang];
-  const fileColor = { php: "#8892bf", python: "#ffd43b", js: "#f7df1e" }[lang];
+  const langLabel = { php: "PHP", python: "Python", js: "JavaScript", ts: "TypeScript", sql: "SQL" }[lang];
+  const fileColor = { php: "#8892bf", python: "#ffd43b", js: "#f7df1e", ts: "#4f9bf0", sql: "#f29111" }[lang];
   return (
     <Screen bg={C.bg} style={{ color: C.text }}>
       <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
@@ -223,7 +225,7 @@ export const CodeEditor: React.FC<{
           </span>
           <span>0 errors · 0 warnings</span>
           <span style={{ marginLeft: "auto" }}>Ln {highlightLine ?? 1}, Col 5</span>
-          <span>Spaces: 4</span>
+          <span>Spaces: {lang === "php" || lang === "python" ? 4 : 2}</span>
           <span>UTF-8</span>
           <span>{langLabel}</span>
         </div>

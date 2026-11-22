@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { scenes } from "../data/build";
+import type { Lang } from "../lib/highlight";
 import { getProject, mediaUrl } from "../data/projects";
 import { cursors, pointOn, type CursorId } from "../lib/cursors";
 import { usePrefersReducedMotion } from "../lib/hooks";
@@ -9,11 +10,11 @@ import Icon from "./Icon";
 const clamp = (v: number) => Math.min(1, Math.max(0, v));
 
 const STEPS = [
-  { title: "Write the code", text: "Readable PHP, Python or JavaScript, versioned in Git." },
+  { title: "Write the code", text: "Readable TypeScript and SQL on Supabase, versioned in Git." },
   { title: "Test it", text: "Automated tests check the rules that matter before release." },
   { title: "Run it", text: "Deployed for real users, with support after launch." },
 ];
-const LANG = { php: "PHP", python: "Python", js: "JavaScript" };
+const LANG: Record<Lang, string> = { ts: "TypeScript", sql: "SQL", php: "PHP", python: "Python", js: "JavaScript" };
 
 /**
  * "How a feature gets built": a sticky scene driven by scrolling. The code types itself in an

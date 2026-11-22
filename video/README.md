@@ -42,12 +42,13 @@ Timing lives in `src/timeline.json` (cut points in frames, 30 fps). Transitions 
 ## Project images (screenshots, thumbnails, posters)
 
 The website's project images are also drawn here, with sample data, in `src/screens/`
-(`helpdesk.tsx`, `checker.tsx`, `miromail.tsx`, shared UI in `kit.tsx`, code editor in `code.tsx`).
+(`apartment.tsx`, `emr.tsx`, `medicine.tsx`, `helpdesk.tsx`, `websites.tsx`, `automations.tsx`; shared UI in `kit.tsx`,
+code editor in `code.tsx`, database diagrams in `schema.tsx`). Every name, unit, price and patient shown is made up.
 `src/screens/index.tsx` lists every image; the id `"<project-slug>--<file>"` is the output path.
 
 ```bash
 npm run images                # render all → ../public/assets/projects/<slug>/<file>.webp
-npm run images -- miromail    # only ids containing "miromail"
+npm run images -- medicine    # only ids containing "medicine"
 ```
 
 Open `npm run studio` and look in the **Website-images** folder to preview and tweak them live.

@@ -89,7 +89,7 @@ Other commands:
      "overview": ["Paragraph 1", "Paragraph 2"],
      "highlights": [{ "label": "User roles", "value": "3" }],
      "features": ["Feature one", "Feature two"],
-     "tech": ["PHP", "MySQL"],
+     "tech": ["React", "TypeScript", "Supabase"],
      "thumbnail": "thumbnail.webp",
      "showcase": { "url": "inventory.example.com", "images": ["screenshot-1.webp", "screenshot-2.webp"] },
      "screenshots": [
@@ -116,6 +116,7 @@ The project automatically appears on Home (selected work, gallery), Projects, th
 and (if it has videos) the Demo Theater. To give it a scene in "How a feature gets built", add an entry to
 `scenes` in [`src/data/build.ts`](src/data/build.ts).
 
+- Order matters: the first four projects get a large row in Home's selected work, the rest a smaller card.
 - `short`: short name used in tabs and gallery filters.
 - `showcase` (optional): the address shown in browser frames for this project (`url`) and two screenshots.
 - `"kind": "code"` on a screenshot puts it under the gallery's "Code & database" filter.
@@ -126,7 +127,7 @@ Each project has a `videos` list, so you can add **as many videos per project as
 They show up on the project's page and on the **Demos** page (`/demos`) in a player with a playlist.
 
 **Option A: upload an MP4 (best for short demos)**
-1. Put the file in the project folder, e.g. `public/assets/projects/miromail/demo.mp4`
+1. Put the file in the project folder, e.g. `public/assets/projects/medicine-portal/demo.mp4`
    (or `demo-2.mp4`, `demo-3.mp4`, …).
 2. Add (or update) an entry in that project's `videos` list with `"src": "demo.mp4"`.
 3. Add a cover image (`poster.webp`, 1280 × 720) and set `"poster": "poster.webp"`.
@@ -159,9 +160,12 @@ Put these in **`public/assets/projects/<slug>/`**:
 Current folders:
 
 ```
-public/assets/projects/it-helpdesk-ticketing-system/   thumbnail, poster, poster-2, screenshot-1..6  (demo.mp4, demo-2.mp4 to add)
-public/assets/projects/ai-plagiarism-checker/          thumbnail, poster, screenshot-1..4            (demo.mp4 to add)
-public/assets/projects/miromail/                       thumbnail, poster, screenshot-1..5            (demo.mp4 to add)
+public/assets/projects/apartment-management-system/   thumbnail, poster, screenshot-1..6            (demo.mp4 to add)
+public/assets/projects/electronic-medical-records/    thumbnail, poster, screenshot-1..4            (demo.mp4 to add)
+public/assets/projects/medicine-portal/               thumbnail, poster, screenshot-1..4            (demo.mp4 to add)
+public/assets/projects/it-helpdesk-ticketing-system/  thumbnail, poster, poster-2, screenshot-1..6  (demo.mp4, demo-2.mp4 to add)
+public/assets/projects/business-websites/             thumbnail, poster, screenshot-1..4
+public/assets/projects/workflow-automations/          thumbnail, poster, screenshot-1..4            (demo.mp4 to add)
 ```
 
 **About the current images:** the screenshots, thumbnails and posters are demo images drawn in code
@@ -172,7 +176,7 @@ looks different. To change and re-render them:
 ```bash
 cd video
 npm run images                 # all images → public/assets/projects/<slug>/
-npm run images -- miromail     # only one project
+npm run images -- medicine     # only ids containing "medicine"
 ```
 
 Real screenshots can simply replace the files (same names), and the code-drawn versions are no longer used.

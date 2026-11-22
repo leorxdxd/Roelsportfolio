@@ -6,8 +6,8 @@ import CodeView from "./CodeView";
 import Icon from "./Icon";
 import Portrait3D from "./Portrait3D";
 
-const helpdesk = getProject("it-helpdesk-ticketing-system") ?? projects[0];
-const checker = getProject("ai-plagiarism-checker") ?? projects[projects.length - 1];
+const apartments = getProject("apartment-management-system") ?? projects[0];
+const emr = getProject("electronic-medical-records") ?? projects[1] ?? projects[0];
 
 type Parts = { back: boolean; side: boolean; portrait: boolean; code: boolean; toast: boolean };
 const ALL: Parts = { back: true, side: true, portrait: true, code: true, toast: true };
@@ -122,13 +122,13 @@ export default function HeroStage({ start }: { start: boolean }) {
     <div className="stage" ref={stage}>
       <div className="stage__world">
         <figure ref={back} className={`stage__win stage__win--back${on("back")}`} aria-hidden="true">
-          <BrowserBar url={helpdesk.showcase?.url} />
-          <img src={mediaUrl(helpdesk, "screenshot-1.webp")} alt="" width={1600} height={1000} decoding="async" />
+          <BrowserBar url={apartments.showcase?.url} />
+          <img src={mediaUrl(apartments, "screenshot-1.webp")} alt="" width={1600} height={1000} decoding="async" />
         </figure>
 
         <figure className={`stage__win stage__win--side${on("side")}`} aria-hidden="true">
           <BrowserBar />
-          <img src={mediaUrl(checker, "screenshot-2.webp")} alt="" width={1600} height={1000} loading="lazy" decoding="async" />
+          <img src={mediaUrl(emr, "screenshot-1.webp")} alt="" width={1600} height={1000} loading="lazy" decoding="async" />
         </figure>
 
         <div ref={holder} className={`stage__frame${on("portrait")}`} aria-hidden="true">
@@ -151,8 +151,8 @@ export default function HeroStage({ start }: { start: boolean }) {
             <Icon name="check" size={14} />
           </span>
           <span>
-            <b>4 tests passed</b>
-            <small>assign.php · 0.42 s</small>
+            <b>{heroSnippet.test.title}</b>
+            <small>{heroSnippet.test.detail}</small>
           </span>
         </div>
       </div>

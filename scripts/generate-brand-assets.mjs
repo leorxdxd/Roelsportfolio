@@ -18,7 +18,7 @@ const INITIALS = "RD";
 const TITLE = "Software Developer";
 const SUBTITLE = "Web apps · Business systems · IT support";
 // Screenshot shown on the right of the social-share image (skipped if missing).
-const OG_SHOT = "assets/projects/it-helpdesk-ticketing-system/screenshot-1.webp";
+const OG_SHOT = "assets/projects/apartment-management-system/screenshot-1.webp";
 const font = "Schibsted Grotesk, Segoe UI, Helvetica, Arial, sans-serif";
 const mono = "JetBrains Mono, Cascadia Mono, Consolas, monospace";
 

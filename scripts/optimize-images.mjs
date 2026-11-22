@@ -4,7 +4,7 @@
 //
 //   npm run media:optimize
 //
-// Example: drop "screenshot-1.png" into public/assets/projects/miromail/,
+// Example: drop "screenshot-1.png" into public/assets/projects/medicine-portal/,
 // run this script, and you get "screenshot-1.webp" (replacing the placeholder).
 import fs from "node:fs";
 import path from "node:path";

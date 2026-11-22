@@ -13,7 +13,7 @@ export const site = {
   /** Short role shown next to your name. */
   role: "Software Developer",
   valueStatement:
-    "I design, build and maintain web applications and business systems for schools and small businesses.",
+    "I design, build and maintain web applications and business systems for clinics, schools and small businesses.",
   location: "Metro Manila, Philippines",
   availability: "Available for freelance projects",
   /** Year you started doing IT support (used for the "years of experience" counter). */

@@ -3,18 +3,21 @@ import type { Lang } from "../lib/highlight";
 /**
  * Code shown in the Home page animations ("write the code, test it, run it").
  * These are short illustrative versions of each project's code, with sample data only.
+ * Secrets are read from environment variables, never written in the code.
  */
 
 export const heroSnippet = {
-  file: "assign.php",
-  lang: "php" as Lang,
-  code: `function assignTicket(PDO $db, int $id): ?int
-{
-    $tech = leastBusyTechnician($db, $id);
-    if ($tech === null) return null;
-    notify($tech, "New ticket #$id");
-    return $tech;
+  file: "bills.ts",
+  lang: "ts" as Lang,
+  code: `async function overdueBills(db: Db) {
+  const { data } = await db
+    .from("bills")
+    .select("id, total, tenants(name)")
+    .eq("status", "unpaid")
+    .lt("due_date", today());
+  return data ?? [];
 }`,
+  test: { title: "4 tests passed", detail: "bills.test.ts · 0.42 s" },
 };
 
 export interface Scene {
@@ -30,127 +33,177 @@ export interface Scene {
 
 export const scenes: Scene[] = [
   {
-    project: "it-helpdesk-ticketing-system",
-    file: "assign.php",
-    path: "helpdesk / app / tickets",
-    lang: "php",
-    code: `<?php
-// Give a new ticket to the technician with the fewest open tickets
-function assignTicket(PDO $db, int $ticketId, string $category): ?int
-{
-    $stmt = $db->prepare(
-        "SELECT u.id FROM users u
-           LEFT JOIN tickets t ON t.assigned_to = u.id
-                AND t.status IN ('new', 'in_progress')
-          WHERE u.role = 'technician'
-            AND FIND_IN_SET(:category, u.skills)
-          GROUP BY u.id ORDER BY COUNT(t.id) LIMIT 1"
-    );
-    $stmt->execute(['category' => $category]);
-    $techId = $stmt->fetchColumn();
-    if ($techId === false) {
-        return null; // stays in the queue for an admin
-    }
-    $db->prepare("UPDATE tickets SET assigned_to = ? WHERE id = ?")
-       ->execute([$techId, $ticketId]);
-    notifyTechnician((int) $techId, $ticketId);
-    return (int) $techId;
-}`,
-    terminal: [
-      { t: "$ ./vendor/bin/phpunit --testdox" },
-      { t: "Assign Ticket" },
-      { t: " ✔ Assigns to the technician with the fewest open tickets", ok: true },
-      { t: " ✔ Only considers technicians with the right skill", ok: true },
-      { t: " ✔ Leaves the ticket unassigned when nobody matches", ok: true },
-      { t: "OK (3 tests, 9 assertions)", ok: true },
-      { t: "$ php -S localhost:8000 -t public" },
-      { t: "Listening on http://localhost:8000" },
-    ],
-    screen: {
-      file: "screenshot-2.webp",
-      url: "helpdesk.sampleschool.test/tickets",
-      click: [0.71, 0.238],
-      toast: "Ticket #1042 assigned to Mark Bautista",
-    },
-  },
-  {
-    project: "ai-plagiarism-checker",
-    file: "check.py",
-    path: "plagiarism-checker / app",
-    lang: "python",
-    code: `@bp.post("/api/check")
-def check():
-    text = clean(request.form.get("text", ""))
-    sentences = split_sentences(text)
-    sources = load_sources()
+    project: "apartment-management-system",
+    file: "index.ts",
+    path: "supabase / functions / generate-bills",
+    lang: "ts",
+    code: `// Runs on the 1st of every month: one bill per active lease
+Deno.serve(async () => {
+  const db = createClient(env("SUPABASE_URL"), env("SUPABASE_SERVICE_ROLE_KEY"));
+  const period = monthStart(new Date());
 
-    tfidf = TfidfVectorizer(ngram_range=(1, 3))
-    matrix = tfidf.fit_transform(sentences + [s.text for s in sources])
-    n = len(sentences)
-    scores = cosine_similarity(matrix[:n], matrix[n:])
+  const { data: leases } = await db
+    .from("leases")
+    .select("id, unit_id, monthly_rent")
+    .eq("status", "active")
+    .throwOnError();
 
-    matches = []
-    for sentence, row in zip(sentences, scores):
-        best = row.argmax()
-        if row[best] >= THRESHOLD:
-            matches.append({"sentence": sentence,
-                            "source": sources[best].title})
-
-    similarity = round(100 * len(matches) / max(n, 1))
-    return jsonify(similarity=similarity, matches=matches)`,
-    terminal: [
-      { t: "$ pytest -q" },
-      { t: "...............                                   [100%]", ok: true },
-      { t: "15 passed in 1.42s", ok: true },
-      { t: "$ flask --app app run" },
-      { t: " * Running on http://127.0.0.1:5000" },
-    ],
-    screen: {
-      file: "screenshot-2.webp",
-      url: "checker.example.edu/results",
-      click: [0.884, 0.124],
-      toast: "4 flagged sentences sent to the paraphraser",
-    },
-  },
-  {
-    project: "miromail",
-    file: "schedule.js",
-    path: "miromail / server / routes",
-    lang: "js",
-    code: `// Save an email to send later
-router.post("/schedule", requireAuth, async (req, res) => {
-  const { to, subject, html, sendAt } = req.body;
-  if (!to?.length || new Date(sendAt) <= new Date()) {
-    return res.status(400).json({ error: "Pick recipients and a future time." });
+  const bills = [];
+  for (const lease of leases) {
+    const { water, power } = await readingsFor(db, lease.unit_id, period);
+    bills.push({ lease_id: lease.id, period, rent: lease.monthly_rent,
+      water, electricity: power, due_date: addDays(period, 4) });
   }
-  const email = await ScheduledEmail.create({
-    userId: req.user.id, to, subject, html, sendAt,
-  });
-  res.status(201).json({ id: email.id, status: "scheduled" });
-});
 
-// Every minute, send whatever is due through Gmail
-cron.schedule("* * * * *", async () => {
-  for (const email of await ScheduledEmail.findDue(new Date())) {
-    await sendWithGmail(email);
-    await email.markSent();
-  }
+  // upsert: running it twice never creates duplicate bills
+  await db.from("bills").upsert(bills, { onConflict: "lease_id,period" });
+  return Response.json({ created: bills.length });
 });`,
     terminal: [
-      { t: "$ npm test" },
-      { t: " PASS  tests/schedule.test.js", ok: true },
-      { t: "  ✓ rejects a send time in the past (11 ms)", ok: true },
-      { t: "  ✓ saves a scheduled email (17 ms)", ok: true },
-      { t: "  ✓ sends due emails through Gmail (24 ms)", ok: true },
-      { t: "Tests:       3 passed, 3 total", ok: true },
+      { t: "$ deno test --allow-env" },
+      { t: "running 4 tests from ./generate-bills/index.test.ts" },
+      { t: "creates one bill per active lease ... ok (21ms)", ok: true },
+      { t: "adds water and electricity readings ... ok (9ms)", ok: true },
+      { t: "skips vacant units ... ok (6ms)", ok: true },
+      { t: "running twice creates no duplicates ... ok (14ms)", ok: true },
+      { t: "ok | 4 passed | 0 failed (188ms)", ok: true },
+      { t: "$ supabase functions deploy generate-bills" },
+    ],
+    screen: {
+      file: "screenshot-3.webp",
+      url: "rentals.sampleresidences.test/billing",
+      click: [0.899, 0.037],
+      toast: "24 bills created for December",
+    },
+  },
+  {
+    project: "electronic-medical-records",
+    file: "rls_policies.sql",
+    path: "supabase / migrations",
+    lang: "sql",
+    code: `-- Staff only see patients of their own clinic
+alter table patients enable row level security;
+
+create policy "staff read own clinic patients"
+  on patients for select to authenticated
+  using (clinic_id = (
+    select clinic_id from staff where user_id = auth.uid()
+  ));
+
+-- Only doctors can sign a consultation
+create policy "doctors write consultations"
+  on consultations for insert to authenticated
+  with check (exists (
+    select 1 from staff
+    where user_id = auth.uid() and role = 'doctor'
+  ));
+
+-- Every change is kept in the audit log
+create trigger audit_consultations
+  after insert or update or delete on consultations
+  for each row execute function audit.log_change();`,
+    terminal: [
+      { t: "$ supabase db reset" },
+      { t: "Applying migration 20261103_rls_policies.sql..." },
+      { t: "$ supabase test db" },
+      { t: "./supabase/tests/rls_consultations.test.sql .. ok", ok: true },
+      { t: "./supabase/tests/rls_patients.test.sql ....... ok", ok: true },
+      { t: "All tests successful.", ok: true },
+      { t: "Result: PASS", ok: true },
+    ],
+    screen: {
+      file: "screenshot-3.webp",
+      url: "emr.sampleclinic.test/consultations/new",
+      click: [0.904, 0.037],
+      toast: "Consultation signed and added to the audit log",
+    },
+  },
+  {
+    project: "medicine-portal",
+    file: "reserve.ts",
+    path: "medicine-portal / src / lib",
+    lang: "ts",
+    code: `/** Reserve stock from the batches that expire first (FEFO). */
+export async function reserve(orderId: string, medicineId: string, qty: number) {
+  const { data: batches } = await supabase
+    .from("batches")
+    .select("id, quantity, expires_on")
+    .eq("medicine_id", medicineId)
+    .gt("expires_on", today())
+    .order("expires_on")
+    .throwOnError();
+
+  let left = qty;
+  const picks = batches.flatMap((batch) => {
+    const take = Math.min(batch.quantity, left);
+    left -= take;
+    return take > 0 ? [{ order_id: orderId, batch_id: batch.id, quantity: take }] : [];
+  });
+  if (left > 0) throw new OutOfStockError(medicineId);
+
+  // one Postgres transaction: save the picks and lower the stock
+  await supabase.rpc("reserve_batches", { picks }).throwOnError();
+  return picks;
+}`,
+    terminal: [
+      { t: "$ npx vitest run" },
+      { t: " ✓ src/lib/reserve.test.ts (4 tests) 41ms", ok: true },
+      { t: "   ✓ takes stock from the batch that expires first", ok: true },
+      { t: "   ✓ never uses expired batches", ok: true },
+      { t: "   ✓ throws when there is not enough stock", ok: true },
+      { t: "      Tests  4 passed (4)", ok: true },
       { t: "$ npm run dev" },
       { t: "  ➜  Local:   http://localhost:5173/" },
     ],
     screen: {
-      file: "screenshot-3.webp",
-      url: "app.miromail.example/compose",
-      click: [0.669, 0.71],
-      toast: "Scheduled for Friday, Dec 4 at 7:00 AM",
+      file: "screenshot-1.webp",
+      url: "samplepharmacy.test/medicines",
+      click: [0.85, 0.704],
+      toast: "Reservation #2041 confirmed for 3:00 PM pickup",
+    },
+  },
+  {
+    project: "workflow-automations",
+    file: "index.ts",
+    path: "supabase / functions / send-reminders",
+    lang: "ts",
+    code: `// Scheduled with pg_cron: every day at 8:00 AM
+Deno.serve(async () => {
+  const db = createClient(env("SUPABASE_URL"), env("SUPABASE_SERVICE_ROLE_KEY"));
+
+  const { data: bills } = await db
+    .from("bills")
+    .select("id, total, due_date, tenant:profiles(full_name, email)")
+    .eq("status", "unpaid")
+    .eq("due_date", addDays(today(), 3))
+    .throwOnError();
+
+  let sent = 0;
+  for (const bill of bills) {
+    const ok = await sendEmail({
+      to: bill.tenant.email,
+      subject: \`Rent reminder: ₱\${bill.total} due \${formatDate(bill.due_date)}\`,
+      html: reminderEmail(bill),
+    });
+    await db.from("automation_logs").insert({ job: "rent-reminders", bill_id: bill.id, ok });
+    if (ok) sent++;
+  }
+  return Response.json({ sent, total: bills.length });
+});`,
+    terminal: [
+      { t: "$ deno test --allow-env --allow-net" },
+      { t: "running 3 tests from ./send-reminders/index.test.ts" },
+      { t: "only emails bills due in exactly 3 days ... ok (16ms)", ok: true },
+      { t: "logs every email, sent or failed ... ok (8ms)", ok: true },
+      { t: "skips bills that are already paid ... ok (5ms)", ok: true },
+      { t: "ok | 3 passed | 0 failed (97ms)", ok: true },
+      { t: "$ supabase functions deploy send-reminders" },
+    ],
+    screen: {
+      file: "screenshot-1.webp",
+      url: "automations.sample.test/workflows",
+      click: [0.927, 0.362],
+      toast: "Rent reminders: 18 emails sent",
     },
   },
 ];

@@ -245,7 +245,7 @@ const avatarColors = ["#2563eb", "#7c3aed", "#0d9488", "#ea580c", "#db2777", "#0
 export const Avatar: React.FC<{ name: string; size?: number; color?: string }> = ({ name, size = 32, color }) => {
   const initials = name
     .split(" ")
-    .filter((p) => /[A-Z]/.test(p[0]))
+    .filter((p) => /[A-Z]/.test(p[0]) && !p.endsWith("."))
     .map((p) => p[0])
     .slice(0, 2)
     .join("");
@@ -446,6 +446,43 @@ export const Toggle: React.FC<{ on?: boolean; color?: string }> = ({ on = true, 
 export const Bar: React.FC<{ value: number; color: string; h?: number; bg?: string }> = ({ value, color, h = 8, bg = ink.line }) => (
   <div style={{ height: h, borderRadius: h, background: bg, overflow: "hidden" }}>
     <div style={{ width: `${value}%`, height: "100%", borderRadius: h, background: color }} />
+  </div>
+);
+
+/** Philippine peso amount, e.g. peso(9350) → "₱9,350". */
+export const peso = (n: number, decimals = 0) =>
+  "₱" + n.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+
+/** Underlined tab row with optional counts. */
+export const TabRow: React.FC<{ tabs: (string | [string, number])[]; active: string; color: string; style?: React.CSSProperties }> = ({ tabs, active, color, style }) => (
+  <div style={{ display: "flex", gap: 26, borderBottom: `1px solid ${ink.border}`, fontSize: 14.5, ...style }}>
+    {tabs.map((t) => {
+      const [label, count] = typeof t === "string" ? [t, undefined] : t;
+      const on = label === active;
+      return (
+        <div key={label} style={{ display: "flex", alignItems: "center", gap: 8, padding: "0 2px 12px", fontWeight: on ? 700 : 550, color: on ? ink.text : ink.muted, boxShadow: on ? `inset 0 -2.5px 0 ${color}` : "none" }}>
+          {label}
+          {count !== undefined && (
+            <span style={{ padding: "0 7px", borderRadius: 999, fontSize: 12, fontWeight: 700, background: on ? color : ink.graySoft, color: on ? "#fff" : ink.muted }}>{count}</span>
+          )}
+        </div>
+      );
+    })}
+  </div>
+);
+
+/** Label / value row used in detail panels. */
+export const Row: React.FC<{ label: React.ReactNode; children: React.ReactNode; strong?: boolean; last?: boolean }> = ({ label, children, strong, last }) => (
+  <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 0", borderBottom: last ? "none" : `1px solid ${ink.line}`, fontSize: strong ? 16 : 14.5 }}>
+    <span style={{ color: strong ? ink.text : ink.muted, fontWeight: strong ? 700 : 500 }}>{label}</span>
+    <span style={{ marginLeft: "auto", fontWeight: strong ? 800 : 600, color: ink.text, textAlign: "right" }}>{children}</span>
+  </div>
+);
+
+/** Small square icon tile. */
+export const IconTile: React.FC<{ icon: string; color: string; soft: string; size?: number }> = ({ icon, color, soft, size = 40 }) => (
+  <div style={{ width: size, height: size, flex: "none", borderRadius: size * 0.28, background: soft, display: "grid", placeItems: "center" }}>
+    <Icon name={icon} size={size * 0.5} color={color} />
   </div>
 );
 

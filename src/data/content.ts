@@ -10,9 +10,9 @@ export const about = {
   heading: "Software developer with an IT support background.",
   lead: "I build web applications and business systems, and I know the hardware and networks they run on.",
   paragraphs: [
-    "I'm a software developer based in Metro Manila. I design and build web applications, internal systems and websites for schools, small businesses and individuals, from the first requirements and database design to deployment.",
+    "I'm a software developer based in Metro Manila. I design and build web applications, internal systems and websites for clinics, property owners, schools and small businesses, from the first requirements and database design to deployment.",
     "I started in IT support and still work in it. Helping staff with computers, networks and accounts every day shows me where software gets in people's way, and I use that when I design a system: simple screens, clear steps and fewer support calls.",
-    "I work mostly with PHP, JavaScript, TypeScript, React, Python and SQL databases. I keep my projects documented so they are easy to maintain and hand over.",
+    "I work mostly with TypeScript, React and Vite, with Supabase (PostgreSQL) for the database, sign-in and scheduled jobs. I also use PHP, MySQL and Node.js. I keep my projects documented so they are easy to maintain and hand over.",
   ],
   facts: [
     { icon: "mapPin" as IconName, label: "Based in", value: "Metro Manila, PH" },
@@ -88,8 +88,8 @@ export const services: {
     icon: "dashboard",
     title: "Custom Business Systems",
     description:
-      "Web-based systems for the work your team does every day, such as requests, records, approvals and inventory.",
-    points: ["Helpdesk & records systems", "Dashboards & reports", "User roles & permissions"],
+      "Web-based systems for the work your team does every day, such as patient records, billing, inventory and requests.",
+    points: ["Records, billing & inventory systems", "Dashboards & reports", "User roles & permissions"],
     includes: [
       "Requirements and workflow review",
       "Database design and secure user accounts with roles",
@@ -120,9 +120,9 @@ export const services: {
     points: ["API integrations", "Data import & export", "Automated emails & reports"],
     includes: [
       "Connecting systems through REST APIs",
-      "Email sending and scheduling, for example with the Gmail API",
+      "Email and text reminders that run on a schedule",
       "CSV and spreadsheet import and export",
-      "Scheduled jobs and automatic reports",
+      "Scheduled jobs and automatic reports with Supabase Edge Functions",
     ],
     idealFor: "Teams that copy data between apps by hand.",
   },
@@ -187,10 +187,10 @@ export const process: { icon: IconName; title: string; summary: string; details:
 
 /** "Tools I build with" strip on the Home page. */
 export const stack: { label: string; items: string[] }[] = [
-  { label: "Front end", items: ["React", "TypeScript", "JavaScript", "HTML & CSS", "Bootstrap", "Chart.js"] },
-  { label: "Back end", items: ["PHP", "Node.js", "Python", "Flask", "REST APIs"] },
-  { label: "Databases", items: ["MySQL", "PostgreSQL"] },
-  { label: "Tools", items: ["Git & GitHub", "Gmail API", "Netlify"] },
+  { label: "Front end", items: ["React", "TypeScript", "Vite", "JavaScript", "HTML & CSS", "Chart.js"] },
+  { label: "Back end", items: ["Supabase", "Edge Functions", "Node.js", "PHP", "REST APIs"] },
+  { label: "Databases", items: ["PostgreSQL", "MySQL", "Row Level Security"] },
+  { label: "Tools", items: ["Git & GitHub", "Vitest", "Deno", "Netlify"] },
 ];
 
 export const skills: { id: string; icon: IconName; title: string; blurb: string; items: string[] }[] = [
@@ -204,6 +204,8 @@ export const skills: { id: string; icon: IconName; title: string; blurb: string;
       "JavaScript",
       "TypeScript",
       "React",
+      "Vite",
+      "Supabase",
       "PHP",
       "Python & Flask",
       "Node.js",

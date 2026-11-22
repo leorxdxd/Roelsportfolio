@@ -1,9 +1,154 @@
 [
   {
+    "slug": "apartment-management-system",
+    "title": "Apartment Management System",
+    "short": "Apartments",
+    "category": "Business System",
+    "summary": "Units, tenants, leases, monthly bills and payments in one system, with a portal where tenants check their balance and send repair requests.",
+    "builtFor": "A property owner with rental units",
+    "role": "Design and full-stack development",
+    "overview": [
+      "Rent, water and electricity were tracked in a notebook and a spreadsheet, so preparing the monthly bills took hours and it was hard to see who still owed money.",
+      "The system creates each month's bills from the leases and meter readings, records payments with proof of payment, and shows the owner which units are occupied, vacant or overdue. Tenants sign in to their own portal to see their bills, upload payments and send maintenance requests."
+    ],
+    "highlights": [
+      { "label": "Portals", "value": "Owner + tenant" },
+      { "label": "Billing", "value": "Automatic" },
+      { "label": "Reminders", "value": "By email" },
+      { "label": "Database", "value": "Supabase" }
+    ],
+    "features": [
+      "Units by floor with their status: occupied, vacant or under repair",
+      "Tenant records and leases with start and end dates and deposits",
+      "Monthly bills generated from the rent and the water and electricity readings",
+      "Payments with proof-of-payment upload and receipts",
+      "Overdue tracking and email reminders before the due date",
+      "Tenant portal for bills, payment history and maintenance requests",
+      "Owner dashboard for occupancy and monthly collections",
+      "Row level security, so each tenant only sees their own records"
+    ],
+    "tech": ["React", "TypeScript", "Vite", "Supabase", "PostgreSQL", "Edge Functions"],
+    "thumbnail": "thumbnail.webp",
+    "showcase": { "url": "rentals.sampleresidences.test", "images": ["screenshot-1.webp", "screenshot-4.webp"] },
+    "screenshots": [
+      { "file": "screenshot-1.webp", "caption": "Owner dashboard with occupancy, collections and bills due" },
+      { "file": "screenshot-2.webp", "caption": "Units by floor with their payment status" },
+      { "file": "screenshot-3.webp", "caption": "Monthly billing with rent, water and electricity" },
+      { "file": "screenshot-4.webp", "caption": "Tenant portal with the amount due and repair requests" },
+      { "file": "screenshot-5.webp", "caption": "Database design in Supabase (PostgreSQL) with row level security", "kind": "code" },
+      { "file": "screenshot-6.webp", "caption": "Monthly billing function in TypeScript, with tests", "kind": "code" }
+    ],
+    "videos": [
+      {
+        "title": "Monthly billing walkthrough",
+        "src": "demo.mp4",
+        "poster": "poster.webp",
+        "description": "Generating the month's bills, recording a payment and the tenant's view of the bill.",
+        "duration": ""
+      }
+    ],
+    "links": { "live": "", "repo": "" }
+  },
+  {
+    "slug": "electronic-medical-records",
+    "title": "Electronic Medical Records (EMR)",
+    "short": "EMR",
+    "category": "Healthcare System",
+    "summary": "Patient records for a small clinic: appointments, consultation notes, vital signs, prescriptions and lab results, with access limited by role.",
+    "builtFor": "A small medical clinic",
+    "role": "Design and full-stack development",
+    "overview": [
+      "The clinic used paper charts, so finding a patient's history took time and records could be misplaced. Prescriptions were written by hand.",
+      "The EMR keeps each patient's visits, vital signs, diagnoses, prescriptions and lab results in one record. The front desk manages appointments and the waiting room, doctors write consultation notes and print prescriptions, and every change is saved in an audit log."
+    ],
+    "highlights": [
+      { "label": "User roles", "value": "4" },
+      { "label": "Consultation notes", "value": "SOAP" },
+      { "label": "Prescriptions", "value": "Printable" },
+      { "label": "Every change", "value": "Logged" }
+    ],
+    "features": [
+      "Patient records with history, allergies and current medicines",
+      "Appointment calendar per doctor and a waiting-room queue",
+      "Consultation notes in SOAP format with ICD-10 diagnoses",
+      "Vital signs with charts over time",
+      "Prescriptions with allergy warnings, printed or saved as PDF",
+      "Lab results attached to the patient record",
+      "Access by role (doctor, nurse, front desk, admin) and an audit log"
+    ],
+    "tech": ["React", "TypeScript", "Vite", "Supabase", "PostgreSQL", "Row Level Security"],
+    "thumbnail": "thumbnail.webp",
+    "showcase": { "url": "emr.sampleclinic.test", "images": ["screenshot-1.webp", "screenshot-3.webp"] },
+    "screenshots": [
+      { "file": "screenshot-1.webp", "caption": "Patient record with vital signs, medicines and visit history" },
+      { "file": "screenshot-2.webp", "caption": "Appointments by doctor and the waiting-room queue" },
+      { "file": "screenshot-3.webp", "caption": "Consultation notes and prescription" },
+      { "file": "screenshot-4.webp", "caption": "Access rules and audit log in SQL (Supabase), with tests", "kind": "code" }
+    ],
+    "videos": [
+      {
+        "title": "A patient visit",
+        "src": "demo.mp4",
+        "poster": "poster.webp",
+        "description": "Checking in a patient, writing the consultation notes and printing the prescription.",
+        "duration": ""
+      }
+    ],
+    "links": { "live": "", "repo": "" }
+  },
+  {
+    "slug": "medicine-portal",
+    "title": "Medicine Portal",
+    "short": "Medicine Portal",
+    "category": "Healthcare System",
+    "summary": "An online portal where customers reserve medicines for pickup, and pharmacy staff manage stock, expiry dates and prescription checks.",
+    "builtFor": "A local pharmacy",
+    "role": "Design and full-stack development",
+    "overview": [
+      "Customers had to call or visit to ask if a medicine was in stock, and staff checked quantities and expiry dates by hand.",
+      "Customers now search the catalog, reserve medicines and upload a prescription when one is needed. Staff approve prescriptions, prepare the orders and send a text when an order is ready. Stock is tracked per batch, and reservations take from the batch that expires first."
+    ],
+    "highlights": [
+      { "label": "Ordering", "value": "Reserve online" },
+      { "label": "Stock", "value": "Per batch" },
+      { "label": "Expiry alerts", "value": "60 days ahead" },
+      { "label": "Prescriptions", "value": "Photo upload" }
+    ],
+    "features": [
+      "Medicine catalog with search by brand or generic name",
+      "Reservations for pickup, with prescription photo upload",
+      "Prescription check by the pharmacist before an order is prepared",
+      "Order board: new, checking, preparing, ready for pickup",
+      "Stock per batch with low-stock and near-expiry alerts",
+      "Reservations take stock from the batch that expires first",
+      "Text message to the customer when an order is ready",
+      "Sales and inventory reports"
+    ],
+    "tech": ["React", "TypeScript", "Vite", "Supabase", "PostgreSQL", "Vitest"],
+    "thumbnail": "thumbnail.webp",
+    "showcase": { "url": "samplepharmacy.test", "images": ["screenshot-1.webp", "screenshot-2.webp"] },
+    "screenshots": [
+      { "file": "screenshot-1.webp", "caption": "Customer catalog and reservation" },
+      { "file": "screenshot-2.webp", "caption": "Inventory by batch with expiry alerts" },
+      { "file": "screenshot-3.webp", "caption": "Reservation board with a prescription check" },
+      { "file": "screenshot-4.webp", "caption": "Stock reservation logic in TypeScript, with tests", "kind": "code" }
+    ],
+    "videos": [
+      {
+        "title": "Reserving a medicine",
+        "src": "demo.mp4",
+        "poster": "poster.webp",
+        "description": "A customer reserves medicines with a prescription, then the pharmacist approves and prepares the order.",
+        "duration": ""
+      }
+    ],
+    "links": { "live": "", "repo": "" }
+  },
+  {
     "slug": "it-helpdesk-ticketing-system",
     "title": "IT Helpdesk Ticketing System",
     "short": "Helpdesk",
-    "category": "Custom System",
+    "category": "Business System",
     "summary": "A web-based helpdesk where staff report IT problems and the IT team assigns, tracks and resolves them in one place.",
     "builtFor": "The IT office of a local school",
     "role": "Design and full-stack development",
@@ -56,91 +201,84 @@
     "links": { "live": "", "repo": "" }
   },
   {
-    "slug": "ai-plagiarism-checker",
-    "title": "AI Plagiarism & Paraphrasing Checker",
-    "short": "Plagiarism Checker",
-    "category": "Web Application",
-    "summary": "Checks pasted text or uploaded documents for similarity and returns a percentage score, with an optional paraphrasing step.",
-    "builtFor": "Teachers and students",
-    "role": "Design and development",
+    "slug": "business-websites",
+    "title": "Business Websites",
+    "short": "Websites",
+    "category": "Website",
+    "summary": "Responsive websites for small businesses with menus, services, prices and booking or inquiry forms, built to load fast and be easy to update.",
+    "builtFor": "Small businesses and clinics",
+    "role": "Design, development and deployment",
     "overview": [
-      "Checking written work for originality by hand is slow. This tool lets a user paste text or upload a document and get a similarity score in a few seconds.",
-      "An optional paraphrasing step rewrites the text before the check, so writers can improve their wording and see how the score changes."
+      "A small business needs a site that looks right on a phone, shows its services and prices clearly, and makes it easy to book a visit or send an inquiry.",
+      "I design and build each site, connect the forms, set up the domain and hosting, and hand it over with short instructions for updates. The screens here are sample designs in the same style, with made-up businesses."
     ],
     "highlights": [
-      { "label": "Input", "value": "File or text" },
-      { "label": "Output", "value": "Similarity %" },
-      { "label": "Extra", "value": "Paraphraser" },
-      { "label": "Engine", "value": "NLP" }
+      { "label": "Layout", "value": "Mobile-first" },
+      { "label": "Forms", "value": "Booking & inquiry" },
+      { "label": "Hosting", "value": "Netlify" },
+      { "label": "SEO", "value": "Basics included" }
     ],
     "features": [
-      "Paste text or upload a document",
-      "Similarity score shown as a percentage",
-      "Optional paraphrasing before the check",
-      "Text comparison using natural language processing",
-      "Simple single-page interface"
+      "Responsive design for phones, tablets and desktops",
+      "Booking, inquiry and contact forms",
+      "Menus, services, prices and galleries",
+      "SEO basics and social share previews",
+      "Fast loading with optimized images",
+      "Domain, hosting and deployment setup"
     ],
-    "tech": ["Python", "Flask", "NLP / Machine Learning", "HTML & CSS", "JavaScript"],
+    "tech": ["React", "TypeScript", "Vite", "HTML & CSS", "Netlify"],
     "thumbnail": "thumbnail.webp",
-    "showcase": { "url": "checker.example.edu", "images": ["screenshot-2.webp", "screenshot-3.webp"] },
+    "showcase": { "url": "samplecafe.test", "images": ["screenshot-1.webp", "screenshot-2.webp"] },
     "screenshots": [
-      { "file": "screenshot-1.webp", "caption": "Paste text or upload a document" },
-      { "file": "screenshot-2.webp", "caption": "Similarity result" },
-      { "file": "screenshot-3.webp", "caption": "Paraphrasing flagged sentences" },
-      { "file": "screenshot-4.webp", "caption": "Similarity check endpoint in Python (Flask)", "kind": "code" }
-    ],
-    "videos": [
-      {
-        "title": "Checking a document",
-        "src": "demo.mp4",
-        "poster": "poster.webp",
-        "description": "Uploading a document, the optional paraphrasing step and the similarity score.",
-        "duration": ""
-      }
+      { "file": "screenshot-1.webp", "caption": "Café website with menu highlights" },
+      { "file": "screenshot-2.webp", "caption": "Dental clinic website with appointment booking" },
+      { "file": "screenshot-3.webp", "caption": "Apartment rental website with a unit search" },
+      { "file": "screenshot-4.webp", "caption": "The same websites on mobile" }
     ],
     "links": { "live": "", "repo": "" }
   },
   {
-    "slug": "miromail",
-    "title": "MiroMail",
-    "short": "MiroMail",
-    "category": "Web Application",
-    "summary": "An email app connected to Gmail, with a rich-text editor, a visual design mode for branded emails, and scheduled sending.",
-    "builtFor": "Small businesses and teams that send branded emails",
-    "role": "Design and full-stack development",
+    "slug": "workflow-automations",
+    "title": "Workflow Automations",
+    "short": "Automations",
+    "category": "Automation",
+    "summary": "Scheduled jobs and integrations that take over repetitive work: reminders, reports, spreadsheet imports, backups and form-to-database syncs.",
+    "builtFor": "Small businesses, clinics and school offices",
+    "role": "Design and development",
     "overview": [
-      "Designing a good-looking email usually means switching between a design tool and an email client. MiroMail does both in one place.",
-      "Users sign in with Gmail, write in a rich-text editor or switch to a visual design mode, then send right away or schedule the email for later."
+      "Small offices lose hours every week sending reminders, copying form entries into spreadsheets and preparing the same reports.",
+      "I turn these tasks into small automations that run on a schedule or when something happens, such as a form submission. Every run is logged, failed steps are retried, and the admin gets an alert if a step still fails."
     ],
     "highlights": [
-      { "label": "Integration", "value": "Gmail API" },
-      { "label": "Editor modes", "value": "2" },
-      { "label": "Sending", "value": "Now or scheduled" },
-      { "label": "Mail folders", "value": "5" }
+      { "label": "Triggers", "value": "Schedule or event" },
+      { "label": "Every run", "value": "Logged" },
+      { "label": "Failures", "value": "Retried" },
+      { "label": "Platform", "value": "Supabase" }
     ],
     "features": [
-      "Gmail integration for inbox, sent mail, drafts and trash",
-      "Rich-text mode for everyday emails",
-      "Visual design mode for branded emails",
-      "Scheduled sending with a date and time picker",
-      "Dashboard layout with sidebar navigation"
+      "Email and text reminders for bills and appointments",
+      "Weekly reports emailed as a PDF",
+      "Website and form entries saved to the database",
+      "Spreadsheet imports on a schedule",
+      "Low-stock alerts for inventory",
+      "Nightly database backups to cloud storage",
+      "Run history with retries and failure alerts"
     ],
-    "tech": ["React", "Node.js", "Gmail API", "Quill editor"],
+    "tech": ["TypeScript", "Supabase Edge Functions", "pg_cron", "Deno", "Node.js", "REST APIs"],
     "thumbnail": "thumbnail.webp",
-    "showcase": { "url": "app.miromail.example", "images": ["screenshot-2.webp", "screenshot-1.webp"] },
+    "showcase": { "url": "automations.sample.test", "images": ["screenshot-1.webp", "screenshot-2.webp"] },
     "screenshots": [
-      { "file": "screenshot-1.webp", "caption": "Writing an email in text mode" },
-      { "file": "screenshot-2.webp", "caption": "Visual design mode" },
-      { "file": "screenshot-3.webp", "caption": "Scheduling an email" },
-      { "file": "screenshot-4.webp", "caption": "Inbox synced with Gmail" },
-      { "file": "screenshot-5.webp", "caption": "Scheduling API in Node.js", "kind": "code" }
+      { "file": "screenshot-1.webp", "caption": "Scheduled workflows with their last and next runs" },
+      { "file": "screenshot-2.webp", "caption": "Workflow steps for the rent reminders" },
+      { "file": "screenshot-3.webp", "caption": "Run history and the reminder email it sent" },
+      { "file": "screenshot-4.webp", "caption": "Reminder function in TypeScript (Supabase Edge Function), with tests", "kind": "code" }
     ],
     "videos": [
       {
-        "title": "Writing and scheduling an email",
+        "title": "A reminder workflow",
         "src": "demo.mp4",
         "poster": "poster.webp",
-        "description": "Writing in text mode, designing in visual mode and scheduling the send.",
+        "description": "Setting up the rent reminder workflow, a test run and the run history.",
         "duration": ""
       }
     ],
