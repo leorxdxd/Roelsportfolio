@@ -10,7 +10,9 @@
     "typecheck": "tsc",
     "site": "npm run render && node scripts/publish-to-site.mjs",
     "images": "node scripts/render-images.mjs",
-    "portrait": "node scripts/portrait.mjs"
+    "portrait": "node scripts/portrait.mjs",
+    "tour:capture": "node scripts/capture-site.mjs",
+    "tour": "node scripts/make-audio.mjs src/tour/timeline.json public/tour/music.wav && remotion render SiteTour out/site-tour.mp4 --codec=h264 --crf=18"
   },
   "dependencies": {
     "@remotion/cli": "4.0.545",
@@ -23,6 +25,7 @@
   "devDependencies": {
     "@huggingface/transformers": "4.3.1",
     "@types/react": "19.3.0",
+    "playwright-core": "1.65.1",
     "typescript": "7.0.2"
   }
 }

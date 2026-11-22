@@ -64,10 +64,28 @@ npm run portrait -- path/to/photo.jpg --smooth 2          # smoother cut-out edg
 `scripts/portrait.mjs` uses MODNet (cut-out) and Depth Anything V2 small (depth) through transformers.js.
 They download once and run locally. Use a chest-up photo on a plain background, at least 1000 px tall.
 
+## Site tour (30-second video of the website)
+
+Someone searches for the site, opens it, and the real website plays: the hero building itself,
+scrolling through the projects, the code scene, the Projects page, Ctrl + K and dark mode.
+
+```bash
+# 1. In the website folder: build and serve the site
+npm run build && npm run preview          # http://localhost:4173
+# 2. Here: record the website (Edge, headless) → public/tour/site.mp4 + src/tour/marks.json
+npm run tour:capture
+# 3. Music + render → out/site-tour.mp4
+npm run tour
+```
+
+The edit is in `src/tour/` (`SiteTour.tsx` lists which part of the recording plays when and at what speed).
+The search page is a plain, unbranded one. Change the address shown in the video in `src/tour/parts.tsx` (`SITE`).
+
 ## Preview stills
 
 ```bash
-node scripts/stills.mjs 0 150 300 600   # frames → out/stills/*.png (half size)
+node scripts/stills.mjs 0 150 300 600               # frames → out/stills/*.png (half size)
+node scripts/stills.mjs --id=SiteTour 60 200 500    # another composition
 ```
 
 Remotion is free for individuals and companies with up to 3 employees; see remotion.dev/license.

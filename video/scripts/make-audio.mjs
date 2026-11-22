@@ -1,11 +1,14 @@
 // Generates an ORIGINAL upbeat backing track + UI sound effects (no samples, no copyright).
 // Output: public/music.wav and public/sfx/*.wav
+// Another video: node scripts/make-audio.mjs <timeline.json> <music.wav>  (e.g. the site tour)
 // If public/music.mp3 exists (a royalty-free track you downloaded), the video uses that instead.
 import fs from "node:fs";
 import path from "node:path";
 
 const root = path.resolve(import.meta.dirname, "..");
-const timeline = JSON.parse(fs.readFileSync(path.join(root, "src/timeline.json"), "utf8"));
+const timelineFile = process.argv[2] ? path.resolve(process.argv[2]) : path.join(root, "src/timeline.json");
+const musicFile = process.argv[3] ? path.resolve(process.argv[3]) : path.join(root, "public/music.wav");
+const timeline = JSON.parse(fs.readFileSync(timelineFile, "utf8"));
 const SR = 44100;
 const BPM = timeline.bpm;
 const BEAT = 60 / BPM;
@@ -129,7 +132,7 @@ const stabPattern = [0, 3, 6, 10, 12]; // 16th-note positions
 const arp = [0, 1, 2, 3, 2, 1, 2, 3];
 const bars = Math.ceil(LENGTH / BAR);
 const dropAt = 2 * BAR; // full groove from bar 2
-const finalHit = 34; // seconds
+const finalHit = timeline.finalHit ?? 34; // seconds
 const kicks = [];
 
 for (let b = 0; b < bars; b++) {
@@ -226,7 +229,7 @@ function writeWav(file, buf) {
   fs.writeFileSync(file, data);
   console.log("wrote", path.relative(root, file));
 }
-writeWav(path.join(root, "public/music.wav"), mix);
+writeWav(musicFile, mix);
 writeWav(path.join(root, "public/sfx/click.wav"), click);
 writeWav(path.join(root, "public/sfx/pop.wav"), pop);
 writeWav(path.join(root, "public/sfx/whoosh.wav"), whoosh);
