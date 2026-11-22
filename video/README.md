@@ -76,6 +76,8 @@ npm run build && npm run preview          # http://localhost:4173
 npm run tour:capture
 # 3. Music + render → out/site-tour.mp4
 npm run tour
+# 4. Or render, compress and copy it into the website (../public/assets/showreel/site-tour.mp4 + cover)
+npm run tour:site
 ```
 
 The edit is in `src/tour/` (`SiteTour.tsx` lists which part of the recording plays when and at what speed).

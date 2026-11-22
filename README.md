@@ -22,8 +22,9 @@ The Home page is presented as a site being built live, like a shared design file
 - Light/dark mode (light by default; remembers the visitor's choice)
 - Interactive "How I work" stepper, skills tabs, FAQ accordion, project filter + search
 - **Demo Theater:** video player + playlist for every project demo (local MP4 or YouTube)
-- **Showreel** on the Home page: a 35-second intro video with clickable chapters, a "Watch my reel"
-  button in the hero, and a "Watch my showreel" command (made in code with Remotion, see [`video/`](video/))
+- **Videos** on the Home page: a 30-second website tour (the default) and a 35-second showreel, with
+  clickable chapters, a "Watch the tour" button in the hero and "Watch the …" commands in the search
+  (made in code with Remotion, see [`video/`](video/))
 
 **Quality**
 - All projects and videos come from **one file**: [`src/data/projects.json`](src/data/projects.json)
@@ -63,7 +64,7 @@ Other commands:
 | About, values, services, process steps, skills, FAQ | [`src/data/content.ts`](src/data/content.ts) |
 | Navigation pages | `pages` in [`src/data/site.ts`](src/data/site.ts) |
 | Projects | [`src/data/projects.json`](src/data/projects.json) |
-| Showreel (file paths, duration, chapters) | [`src/data/showreel.ts`](src/data/showreel.ts) |
+| Home videos (file paths, duration, chapters) | [`src/data/showreel.ts`](src/data/showreel.ts) |
 | Code shown in the Home animations | [`src/data/build.ts`](src/data/build.ts) |
 | Hero portrait | see [Hero portrait](#hero-portrait-3d) below |
 | Colors, spacing, fonts | [`src/styles/_tokens.scss`](src/styles/_tokens.scss) |
@@ -206,22 +207,34 @@ Then commit and push. For the best result use a **chest-up photo, facing the cam
 least 1000 px tall**, with no logos, school uniforms, ID lanyards or watermarks. AI-generated portraits of
 yourself work too; keep them true to how you look, since clients will meet you.
 
-## Showreel (intro video)
+## Home videos (website tour and showreel)
 
-The showreel is a personal intro, **not a project demo**, so it isn't in `projects.json` or on the Demos page.
-It lives in `public/assets/showreel/` (`showreel.mp4` + `poster.webp`) and appears on the Home page.
+Both are personal videos, **not project demos**, so they aren't in `projects.json` or on the Demos page.
+They live in `public/assets/showreel/` and appear in the "Videos" section of the Home page. The first video in
+[`src/data/showreel.ts`](src/data/showreel.ts) is the default and plays from the hero button.
 
-The video is built in code in [`video/`](video/) (Remotion). To change it and update the site:
+- **Website tour** (`site-tour.mp4` + `site-tour.webp`, 30 s): someone searches for the site, opens it, and the
+  real website plays: the hero building itself, the projects, the code scene, the Projects page, search and dark mode.
+- **Showreel** (`showreel.mp4` + `poster.webp`, 35 s): a personal intro.
+
+Both are built in code in [`video/`](video/) (Remotion). To update them:
 
 ```bash
 cd video
-npm install          # first time only
-npm run studio       # preview and edit
-npm run site         # render → copy showreel.mp4 + poster.webp into public/assets/showreel/
+npm install            # first time only
+npm run studio         # preview and edit
+
+# Website tour: build and serve the site first (npm run build && npm run preview in this folder), then
+npm run tour:capture   # record the website
+npm run tour:site      # render → compress → copy site-tour.mp4 + site-tour.webp into public/assets/showreel/
+
+# Showreel
+npm run site           # render → copy showreel.mp4 + poster.webp into public/assets/showreel/
 ```
 
-Then commit and push. If you change scene timing (`video/src/timeline.json`), update the chapter times in
-[`src/data/showreel.ts`](src/data/showreel.ts). Photos, music and text are explained in [`video/README.md`](video/README.md).
+Then commit and push. If you change scene timing (`video/src/tour/timeline.json` or `video/src/timeline.json`),
+update the chapter times in [`src/data/showreel.ts`](src/data/showreel.ts). Photos, music and text are explained in
+[`video/README.md`](video/README.md).
 
 ---
 
@@ -303,9 +316,9 @@ public/                 favicon, icons, og-image, robots, _redirects
   assets/portrait/          hero portrait (cut-out + depth map)
   assets/placeholder.webp
   assets/projects/<slug>/   project media
-  assets/showreel/          showreel video + poster
+  assets/showreel/          website tour + showreel videos and covers
 scripts/                image/placeholder/brand generators
-video/                  Remotion project for the showreel, project images and the hero portrait script (separate; not part of the site build)
+video/                  Remotion project for the tour and showreel videos, project images and the hero portrait script (separate; not part of the site build)
 src/
   data/                 site.ts, content.ts, projects.json (all content)
   components/           Navbar, CommandPalette, BuildCursors, HeroStage, Portrait3D, CodeRun, TypeText, WorkGallery, …

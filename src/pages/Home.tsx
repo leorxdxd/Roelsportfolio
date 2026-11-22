@@ -2,7 +2,7 @@ import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { services, stack } from "../data/content";
 import { mediaUrl, projects, type Project } from "../data/projects";
-import { showreel, showreelSeconds } from "../data/showreel";
+import { defaultReel, reelSeconds } from "../data/showreel";
 import { site } from "../data/site";
 import { clickOn, dropOnto, frame } from "../lib/cursors";
 import { setPageMeta } from "../lib/meta";
@@ -12,7 +12,7 @@ import CodeRun from "../components/CodeRun";
 import HeroStage from "../components/HeroStage";
 import Icon from "../components/Icon";
 import MediaImage from "../components/MediaImage";
-import Showreel, { playShowreel } from "../components/Showreel";
+import Showreel, { playReel } from "../components/Showreel";
 import TypeText from "../components/TypeText";
 import WorkGallery from "../components/WorkGallery";
 
@@ -56,15 +56,15 @@ function Hero() {
             <Link to="/contact" className="btn btn--secondary btn--lg">
               Contact me
             </Link>
-            <button type="button" className="reel-link" onClick={() => playShowreel()}>
+            <button type="button" className="reel-link" onClick={() => playReel()}>
               <span className="reel-link__icon" aria-hidden="true">
                 <Icon name="play" size={14} />
               </span>
-              Watch my reel
+              Watch the tour
               <span className="reel-link__time" aria-hidden="true">
-                {showreel.duration}
+                {defaultReel.duration}
               </span>
-              <span className="visually-hidden"> ({showreelSeconds}-second video)</span>
+              <span className="visually-hidden"> ({reelSeconds(defaultReel)}-second video)</span>
             </button>
           </div>
           <ul className="hero__meta">
@@ -299,10 +299,10 @@ function ShowreelSection() {
       <div className="container">
         <SectionHead
           num="05"
-          label="Showreel"
-          title={`My work in ${showreelSeconds} seconds`}
+          label="Videos"
+          title={`See my work in ${reelSeconds(defaultReel)} seconds`}
           id="home-reel-title"
-          lead="A short overview of the problems I solve and the systems I build. Use the chapters to jump to a part."
+          lead="A quick tour of this website and my projects, and a showreel about the work I do. Use the chapters to jump to a part."
         />
         <div ref={ref} className="reel-build" data-build={state}>
           <Showreel />

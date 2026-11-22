@@ -12,7 +12,8 @@
     "images": "node scripts/render-images.mjs",
     "portrait": "node scripts/portrait.mjs",
     "tour:capture": "node scripts/capture-site.mjs",
-    "tour": "node scripts/make-audio.mjs src/tour/timeline.json public/tour/music.wav && remotion render SiteTour out/site-tour.mp4 --codec=h264 --crf=18"
+    "tour": "node scripts/make-audio.mjs src/tour/timeline.json public/tour/music.wav && remotion render SiteTour out/site-tour.mp4 --codec=h264 --crf=18",
+    "tour:site": "npm run tour && node scripts/publish-to-site.mjs tour"
   },
   "dependencies": {
     "@remotion/cli": "4.0.545",

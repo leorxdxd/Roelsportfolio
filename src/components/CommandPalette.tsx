@@ -1,11 +1,11 @@
 import { Fragment, useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { projects } from "../data/projects";
-import { showreel } from "../data/showreel";
+import { reels } from "../data/showreel";
 import { pages, site } from "../data/site";
 import { useTheme } from "../lib/theme";
 import Icon, { type IconName } from "./Icon";
-import { playShowreel } from "./Showreel";
+import { playReel } from "./Showreel";
 
 interface Item {
   id: string;
@@ -45,17 +45,17 @@ export default function CommandPalette() {
       group: "Projects",
       run: () => navigate(`/projects/${p.slug}`),
     })),
-    {
-      id: "action-showreel",
-      label: "Watch my showreel",
-      hint: `${showreel.duration} video`,
-      icon: "play",
+    ...reels.map((r) => ({
+      id: `action-${r.id}`,
+      label: `Watch the ${r.title.toLowerCase()}`,
+      hint: `${r.duration} video`,
+      icon: "play" as IconName,
       group: "Actions",
-      // On Home it scrolls to the reel and plays it; elsewhere it opens Home at the reel.
+      // On Home it scrolls to the video and plays it; elsewhere it opens Home at the videos.
       run: () => {
-        if (!playShowreel()) navigate("/#showreel");
+        if (!playReel(r.id)) navigate("/#showreel");
       },
-    },
+    })),
     {
       id: "action-theme",
       label: `Switch to ${theme === "dark" ? "light" : "dark"} mode`,

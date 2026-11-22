@@ -24,6 +24,11 @@
   max-width: 1000px;
   margin-inline: auto;
 
+  &__picker {
+    justify-content: center;
+    margin-bottom: clamp(14px, 2vw, 20px);
+  }
+
   &__frame {
     padding: clamp(6px, 1vw, 10px);
     border: 1px solid var(--color-border);
