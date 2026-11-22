@@ -115,7 +115,7 @@ export default function About() {
             eyebrow="Skills"
             title="What I work with"
             id="skills-title"
-            lead="Pick a category to explore."
+            lead="Languages, frameworks and tools I use, by area."
             center
           />
           <div data-reveal>
@@ -147,7 +147,7 @@ export default function About() {
         </div>
       </section>
 
-      <CtaBand title="Let's build something useful together" />
+      <CtaBand />
     </>
   );
 }

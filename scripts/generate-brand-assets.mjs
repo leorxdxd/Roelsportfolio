@@ -12,7 +12,10 @@ const pub = (p) => path.join(root, "public", p);
 const ACCENT = "#2563eb";
 const NAME = "Roel Delos Reyes";
 const INITIALS = "RD";
-const TITLE = "IT Technical Support | Web &amp; Systems Developer";
+const TITLE = "Software Developer";
+const SUBTITLE = "Web apps · Business systems · IT support";
+// Screenshot shown on the right of the social-share image (skipped if missing).
+const OG_SHOT = "assets/projects/it-helpdesk-ticketing-system/screenshot-1.webp";
 const font = "Segoe UI, Inter, Helvetica, Arial, sans-serif";
 
 const iconSvg = (size) => `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 64 64">
@@ -54,12 +57,29 @@ const og = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" vi
   <rect width="1200" height="630" fill="url(#g)"/>
   <rect x="80" y="80" width="72" height="72" rx="16" fill="${ACCENT}"/>
   <text x="116" y="128" text-anchor="middle" font-family="${font}" font-size="30" font-weight="700" fill="#fff">${INITIALS}</text>
-  <text x="80" y="300" font-family="${font}" font-size="76" font-weight="700" fill="#0f172a" letter-spacing="-2">${NAME}</text>
-  <text x="80" y="370" font-family="${font}" font-size="34" font-weight="600" fill="${ACCENT}">${TITLE}</text>
-  <text x="80" y="440" font-family="${font}" font-size="28" fill="#475569">IT support · Custom systems · Websites</text>
+  <text x="80" y="292" font-family="${font}" font-size="56" font-weight="700" fill="#0f172a" letter-spacing="-1.5">${NAME}</text>
+  <text x="80" y="352" font-family="${font}" font-size="34" font-weight="600" fill="${ACCENT}">${TITLE}</text>
+  <text x="80" y="408" font-family="${font}" font-size="23" fill="#475569">${SUBTITLE}</text>
   <rect x="80" y="520" width="120" height="6" rx="3" fill="${ACCENT}"/>
 </svg>`;
-await sharp(Buffer.from(og)).png({ compressionLevel: 9 }).toFile(pub("og-image.png"));
+const layers = [];
+if (fs.existsSync(pub(OG_SHOT))) {
+  const w = 600;
+  const h = 375;
+  const left = 560;
+  const top = 128;
+  const shot = await sharp(pub(OG_SHOT)).resize(w, h).toBuffer();
+  const mask = Buffer.from(`<svg width="${w}" height="${h}"><rect width="${w}" height="${h}" rx="16"/></svg>`);
+  const rounded = await sharp(shot).composite([{ input: mask, blend: "dest-in" }]).png().toBuffer();
+  const shadow = await sharp(
+    Buffer.from(`<svg width="${w + 80}" height="${h + 80}"><rect x="40" y="40" width="${w}" height="${h}" rx="16" fill="#0f172a" fill-opacity="0.28"/></svg>`),
+  )
+    .blur(18)
+    .png()
+    .toBuffer();
+  layers.push({ input: shadow, left: left - 40, top: top - 26 }, { input: rounded, left, top });
+}
+await sharp(Buffer.from(og)).composite(layers).png({ compressionLevel: 9 }).toFile(pub("og-image.png"));
 
 // Optional: profile photo
 const photo = process.argv[2];

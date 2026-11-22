@@ -287,9 +287,29 @@
     font-size: 0.9375rem;
   }
 
+  &__text {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 0;
+  }
+
   &__count {
     margin-left: 12px;
     color: rgb(255 255 255 / 0.6);
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 16px;
+    font-weight: 600;
+    color: #93c5fd;
+
+    &:hover {
+      color: #fff;
+    }
   }
 
   &__controls {

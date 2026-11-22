@@ -15,7 +15,7 @@ export default function Services() {
     () =>
       setPageMeta(
         "Services",
-        "IT technical support, custom system development, website development, and general IT assistance in Metro Manila and remote.",
+        "Custom business systems, websites, integrations and IT support. Based in Metro Manila, working remotely or on-site.",
       ),
     [],
   );
@@ -25,8 +25,8 @@ export default function Services() {
       <PageHeader
         crumb="Services"
         eyebrow="Services"
-        title="Support today. Systems for tomorrow."
-        lead="Four ways I help businesses, schools, and offices get more out of their technology."
+        title="Software development and IT support"
+        lead="Custom systems, websites and integrations, plus the IT support to keep them running."
       >
         <nav className="jump-links" aria-label="Jump to a service" data-reveal>
           {services.map((s) => (
@@ -84,7 +84,7 @@ export default function Services() {
             eyebrow="Process"
             title="From first message to launch"
             id="process-title"
-            lead="Click through each step."
+            lead="Four steps from the first call to launch. Select a step for details."
             center
           />
           <div data-reveal>
@@ -99,7 +99,7 @@ export default function Services() {
             eyebrow="FAQ"
             title="Common questions"
             id="faq-title"
-            lead="Don't see your question? Just ask. I'm happy to help."
+            lead="Don't see your question? Send me a message."
           />
           <Faq />
         </div>

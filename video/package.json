@@ -8,7 +8,8 @@
     "render": "npm run audio && remotion render Showreel out/showreel.mp4 --codec=h264 --crf=22",
     "still": "remotion still Showreel out/still.png",
     "typecheck": "tsc",
-    "site": "npm run render && node scripts/publish-to-site.mjs"
+    "site": "npm run render && node scripts/publish-to-site.mjs",
+    "images": "node scripts/render-images.mjs"
   },
   "dependencies": {
     "@remotion/cli": "4.0.545",

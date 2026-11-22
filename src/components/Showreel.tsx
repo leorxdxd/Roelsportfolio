@@ -120,7 +120,7 @@ export default function Showreel() {
               )}
               <div className="player__meta" aria-hidden="true">
                 <span className="player__project">{showreel.title}</span>
-                <span className="player__title">IT support, systems & websites</span>
+                <span className="player__title">Web apps, business systems & IT support</span>
               </div>
               <span className="player__duration">{showreel.duration}</span>
             </div>

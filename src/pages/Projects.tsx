@@ -33,8 +33,8 @@ export default function Projects() {
       <PageHeader
         crumb="Projects"
         eyebrow="Portfolio"
-        title="Systems & web apps I've built"
-        lead="Case studies with features, screenshots, and demo videos. Everything shown uses sample data."
+        title="Systems and web apps I've built"
+        lead="Case studies with features, screenshots and demo videos. All screens use sample data."
       />
 
       <section className="section section--tight" aria-labelledby="project-list-title">
@@ -102,7 +102,7 @@ export default function Projects() {
         </div>
       </section>
 
-      <CtaBand title="Need a system like these?" />
+      <CtaBand title="Need a system like one of these?" />
     </>
   );
 }

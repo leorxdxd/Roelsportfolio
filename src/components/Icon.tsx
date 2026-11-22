@@ -135,6 +135,12 @@ const paths = {
     </>
   ),
   play: <path d="M6 3 20 12 6 21z" />,
+  pause: (
+    <>
+      <rect x="6" y="4" width="4" height="16" rx="1" />
+      <rect x="14" y="4" width="4" height="16" rx="1" />
+    </>
+  ),
   monitor: (
     <>
       <rect width="20" height="14" x="2" y="3" rx="2" />

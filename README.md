@@ -6,9 +6,10 @@ Built with **React + TypeScript + Vite + SCSS**. There's no UI framework and no 
 **Pages:** Home · About · Services · Projects · Project case study (`/projects/<slug>`) · Demo Theater (`/demos`) · Contact
 
 **Interactive features**
-- Live, animated helpdesk dashboard in the hero (sample data) that shows the kind of systems you build
-- Typing headline, scroll-reveal animations, animated counters, page transitions, tech marquee
-- Cards that tilt toward the cursor with a spotlight effect
+- Hero showcase: screens from each project in layered browser windows. It cycles through projects,
+  pauses on hover, and has keyboard-accessible tabs and a pause button
+- Screen gallery on the Home page with project filters and a full-size viewer (arrow keys, Esc)
+- Scroll-reveal animations, page transitions, and project cards that tilt toward the cursor
 - **Ctrl/⌘ + K command palette** to jump to any page or project
 - Light/dark mode (light by default; remembers the visitor's choice)
 - Interactive "How I work" stepper, skills tabs, FAQ accordion, project filter + search
@@ -70,6 +71,7 @@ Other commands:
    {
      "slug": "inventory-system",
      "title": "Inventory Management System",
+     "short": "Inventory",
      "category": "Custom System",
      "summary": "One or two sentences shown on the card.",
      "builtFor": "A small retail business",
@@ -79,7 +81,11 @@ Other commands:
      "features": ["Feature one", "Feature two"],
      "tech": ["PHP", "MySQL"],
      "thumbnail": "thumbnail.webp",
-     "screenshots": [{ "file": "screenshot-1.webp", "caption": "Dashboard" }],
+     "showcase": { "url": "inventory.example.com", "images": ["screenshot-1.webp", "screenshot-2.webp"] },
+     "screenshots": [
+       { "file": "screenshot-1.webp", "caption": "Dashboard" },
+       { "file": "screenshot-2.webp", "caption": "Database design", "kind": "code" }
+     ],
      "videos": [
        {
          "title": "Full walkthrough",
@@ -96,8 +102,13 @@ Other commands:
 2. Create the folder `public/assets/projects/<slug>/` and add your media (see below).
 3. Optional: run `npm run media:placeholders` to fill any gaps with placeholders.
 
-The project automatically appears on Home, Projects, the footer, the command palette, and
-(if it has videos) the Demo Theater.
+The project automatically appears on Home (hero showcase, selected work, gallery), Projects, the
+footer, the command palette, and (if it has videos) the Demo Theater.
+
+- `short`: short name used in the hero tabs and gallery filters.
+- `showcase` (optional): two screenshots for the hero (main and second window) and the address shown
+  in the browser frame. Projects without it are left out of the hero.
+- `"kind": "code"` on a screenshot puts it under the gallery's "Code & database" filter.
 
 ## Adding demo videos
 
@@ -138,10 +149,23 @@ Put these in **`public/assets/projects/<slug>/`**:
 Current folders:
 
 ```
-public/assets/projects/it-helpdesk-ticketing-system/   thumbnail, poster, poster-2, screenshot-1..3, demo.mp4, demo-2.mp4
-public/assets/projects/ai-plagiarism-checker/          thumbnail, poster, screenshot-1..2, demo.mp4
-public/assets/projects/miromail/                       thumbnail, poster, screenshot-1..3, demo.mp4
+public/assets/projects/it-helpdesk-ticketing-system/   thumbnail, poster, poster-2, screenshot-1..6  (demo.mp4, demo-2.mp4 to add)
+public/assets/projects/ai-plagiarism-checker/          thumbnail, poster, screenshot-1..4            (demo.mp4 to add)
+public/assets/projects/miromail/                       thumbnail, poster, screenshot-1..5            (demo.mp4 to add)
 ```
+
+**About the current images:** the screenshots, thumbnails and posters are demo images drawn in code
+(in [`video/src/screens/`](video/src/screens/)) with sample data. They are illustrations of each project, not captures of the
+real systems, so replace them with real screenshots (with dummy data) wherever the real interface
+looks different. To change and re-render them:
+
+```bash
+cd video
+npm run images                 # all images → public/assets/projects/<slug>/
+npm run images -- miromail     # only one project
+```
+
+Real screenshots can simply replace the files (same names), and the code-drawn versions are no longer used.
 
 **Tip:** you can drop in PNG/JPG files with the same names (e.g. `screenshot-1.png`) and run
 `npm run media:optimize`. They're converted to `.webp` (replacing the placeholder) and the originals
@@ -250,10 +274,10 @@ public/                 favicon, icons, og-image, robots, _redirects
   assets/projects/<slug>/   project media
   assets/showreel/          showreel video + poster
 scripts/                image/placeholder/brand generators
-video/                  Remotion project for the showreel (separate; not part of the site build)
+video/                  Remotion project for the showreel and the project images (separate; not part of the site build)
 src/
   data/                 site.ts, content.ts, projects.json (all content)
-  components/           Navbar, CommandPalette, LiveDashboard, VideoPlayer, VideoTheater, Tabs, …
+  components/           Navbar, CommandPalette, HeroShowcase, WorkGallery, Lightbox, VideoTheater, Tabs, …
   pages/                Home, About, Services, Projects, ProjectDetail, Demos, Contact, NotFound
   lib/                  hooks, theme, video helpers
   styles/               design tokens + SCSS partials

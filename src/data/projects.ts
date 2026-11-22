@@ -3,6 +3,8 @@ import raw from "./projects.json";
 export interface Screenshot {
   file: string;
   caption: string;
+  /** "code" marks code, database or architecture images (the "Code & design" gallery filter). */
+  kind?: "code";
 }
 
 export interface ProjectVideo {
@@ -20,6 +22,8 @@ export interface Project {
   /** URL-safe id; also the media folder name: public/assets/projects/<slug>/ */
   slug: string;
   title: string;
+  /** Short name for tabs and filters, e.g. "Helpdesk". */
+  short: string;
   category: string;
   summary: string;
   /** Generic audience only, e.g. "A small business". Never a real client name. */
@@ -31,6 +35,8 @@ export interface Project {
   tech: string[];
   thumbnail: string;
   screenshots: Screenshot[];
+  /** Home page hero: two screenshot files (main, second) and the address shown in the browser frame. */
+  showcase?: { url: string; images: string[] };
   videos?: ProjectVideo[];
   links?: { live?: string; repo?: string };
 }
@@ -44,7 +50,7 @@ export interface ResolvedVideo extends ProjectVideo {
   project: Project;
 }
 
-export const projects: Project[] = raw;
+export const projects: Project[] = raw as Project[];
 
 export function getProject(slug: string | undefined): Project | undefined {
   return projects.find((p) => p.slug === slug);
@@ -94,3 +100,22 @@ export const allVideos: ResolvedVideo[] = projects.flatMap(resolveVideos);
 export const categories: string[] = [...new Set(projects.map((p) => p.category))];
 
 export const allTech: string[] = [...new Set(projects.flatMap((p) => p.tech))];
+
+export interface GalleryItem {
+  src: string;
+  caption: string;
+  code: boolean;
+  project: Project;
+}
+
+/** Every screenshot, interleaved across projects (1st of each, then 2nd of each, …). */
+export const galleryItems: GalleryItem[] = (() => {
+  const lists = projects.map((p) =>
+    p.screenshots.map((s) => ({ src: mediaUrl(p, s.file), caption: s.caption, code: s.kind === "code", project: p })),
+  );
+  const out: GalleryItem[] = [];
+  for (let i = 0; i < Math.max(...lists.map((l) => l.length)); i++) {
+    for (const l of lists) if (l[i]) out.push(l[i]);
+  }
+  return out;
+})();

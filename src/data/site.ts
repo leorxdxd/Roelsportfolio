@@ -9,9 +9,11 @@ export const site = {
   name: "Roel Delos Reyes",
   firstName: "Roel",
   initials: "RD",
-  title: "IT Technical Support | Web & Systems Developer",
+  title: "Software Developer | Web Apps & Business Systems",
+  /** Short role shown next to your name. */
+  role: "Software Developer",
   valueStatement:
-    "I keep computers and networks running smoothly, and I build the websites and custom systems that help businesses work smarter.",
+    "I design, build and maintain web applications and business systems for schools and small businesses.",
   location: "Metro Manila, Philippines",
   availability: "Available for freelance projects",
   /** Year you started doing IT support (used for the "years of experience" counter). */

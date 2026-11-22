@@ -32,7 +32,7 @@ export default function Demos() {
         </div>
       </section>
 
-      <CtaBand title="Want a walkthrough for your use case?" lead="I'm happy to give you a live demo and talk through how a system like this could fit your workflow." />
+      <CtaBand title="Want a walkthrough?" lead="I can show you any of these systems on a short call and talk through how it could fit your work." />
     </>
   );
 }

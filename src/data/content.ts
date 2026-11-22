@@ -7,34 +7,34 @@ import type { IconName } from "../components/Icon";
  */
 
 export const about = {
-  heading: "IT support professional. Systems builder.",
-  lead: "I fix what's broken today and build the tools that prevent tomorrow's problems.",
+  heading: "Software developer with an IT support background.",
+  lead: "I build web applications and business systems, and I know the hardware and networks they run on.",
   paragraphs: [
-    "I'm an IT technical support professional based in Metro Manila. Day to day, I help people and offices keep their technology working: troubleshooting computers, setting up networks and printers, managing user accounts, and keeping systems maintained.",
-    "As a freelancer, I also design and build custom systems and websites. Working on the support side means I see exactly where people struggle with technology, so I build software that is practical, easy to use, and easy to maintain.",
-    "Whether you need a quick fix, a dependable IT partner, or a system built around the way you work, I focus on clear communication and solutions that last.",
+    "I'm a software developer based in Metro Manila. I design and build web applications, internal systems and websites for schools, small businesses and individuals, from the first requirements and database design to deployment.",
+    "I started in IT support and still work in it. Helping staff with computers, networks and accounts every day shows me where software gets in people's way, and I use that when I design a system: simple screens, clear steps and fewer support calls.",
+    "I work mostly with PHP, JavaScript, TypeScript, React, Python and SQL databases. I keep my projects documented so they are easy to maintain and hand over.",
   ],
   facts: [
     { icon: "mapPin" as IconName, label: "Based in", value: "Metro Manila, PH" },
     { icon: "monitor" as IconName, label: "Works", value: "Remote & on-site" },
-    { icon: "briefcase" as IconName, label: "Focus", value: "IT support & custom systems" },
+    { icon: "code" as IconName, label: "Focus", value: "Web apps & business systems" },
   ],
   experience: [
+    {
+      icon: "code" as IconName,
+      role: "Freelance Software Developer",
+      org: "Self-employed",
+      period: "Ongoing",
+      detail:
+        "Custom web systems and websites for schools, small businesses and individuals, from requirements to deployment and support.",
+    },
     {
       icon: "headset" as IconName,
       role: "IT Support & MIS Assistant",
       org: "A private college",
       period: "2022 – Present",
       detail:
-        "Technical support for staff and students, email and account administration, network assistance, and website updates.",
-    },
-    {
-      icon: "code" as IconName,
-      role: "Freelance Web & Systems Developer",
-      org: "Self-employed",
-      period: "Ongoing",
-      detail:
-        "Custom web systems and websites for schools, small businesses, and individuals, from planning to deployment and support.",
+        "Technical support for staff and students, email and account administration, network support and website updates.",
     },
   ],
   education: [
@@ -55,22 +55,22 @@ export const values: { icon: IconName; title: string; text: string }[] = [
   {
     icon: "message",
     title: "Clear communication",
-    text: "Plain-language updates, no jargon. You always know what's happening and why.",
+    text: "Regular updates in plain language. You always know what is done and what comes next.",
   },
   {
-    icon: "wrench",
-    title: "Built to be maintained",
-    text: "Clean, documented systems that are easy to update, support, and hand over.",
+    icon: "code",
+    title: "Maintainable code",
+    text: "Readable, documented code that is easy to update, support or hand over to another developer.",
   },
   {
     icon: "shield",
-    title: "Privacy-first",
-    text: "Your data stays yours. I follow safe practices and never expose client information.",
+    title: "Careful with data",
+    text: "Sample data in development and demos. Client information is never shared.",
   },
   {
     icon: "lifeBuoy",
     title: "Support after launch",
-    text: "I come from IT support, so I don't disappear after go-live. Help is a message away.",
+    text: "I stay available for fixes and changes after the system goes live.",
   },
 ];
 
@@ -84,63 +84,61 @@ export const services: {
   idealFor: string;
 }[] = [
   {
-    slug: "it-support",
-    icon: "headset",
-    title: "IT Technical Support",
-    description:
-      "Fast, friendly troubleshooting for the hardware and software your team uses every day.",
-    points: ["Hardware & software fixes", "OS installs & setup", "Remote or on-site help"],
-    includes: [
-      "Diagnosing and fixing computer, laptop, and printer problems",
-      "Windows installation, updates, drivers, and software setup",
-      "Virus and malware cleanup, performance tune-ups",
-      "Remote support sessions or on-site visits",
-    ],
-    idealFor: "Small offices, schools, and home users who need reliable, quick help.",
-  },
-  {
     slug: "custom-systems",
     icon: "dashboard",
-    title: "Custom System Development",
+    title: "Custom Business Systems",
     description:
-      "Web-based systems built around your workflow, replacing spreadsheets, paperwork, and lost messages.",
-    points: ["Ticketing & records systems", "Dashboards & reports", "User roles & access"],
+      "Web-based systems for the work your team does every day, such as requests, records, approvals and inventory.",
+    points: ["Helpdesk & records systems", "Dashboards & reports", "User roles & permissions"],
     includes: [
-      "Requirements gathering and workflow mapping",
+      "Requirements and workflow review",
       "Database design and secure user accounts with roles",
-      "Dashboards, charts, and printable reports",
-      "Deployment, training, documentation, and support",
+      "Dashboards, charts and printable reports",
+      "Deployment, documentation and training",
     ],
-    idealFor: "Teams that track requests, records, inventory, or approvals by hand.",
+    idealFor: "Teams that still track work in spreadsheets, paper forms or group chats.",
   },
   {
     slug: "websites",
     icon: "globe",
-    title: "Website Development",
-    description:
-      "Clean, fast, mobile-friendly websites that make your business look professional online.",
-    points: ["Business & portfolio sites", "Responsive design", "SEO basics & deployment"],
+    title: "Websites",
+    description: "Fast, responsive websites for businesses and professionals, built to be easy to update.",
+    points: ["Business & portfolio sites", "Works on every screen size", "SEO basics & hosting"],
     includes: [
-      "Modern, responsive design that works on every screen",
-      "Contact forms, galleries, and service pages",
-      "SEO basics, social-share previews, and fast loading",
-      "Domain, hosting, and deployment setup",
+      "Responsive design and development",
+      "Contact forms, galleries and service pages",
+      "SEO basics, social share previews and fast loading",
+      "Domain, hosting and deployment setup",
     ],
-    idealFor: "Small businesses and professionals who need a credible online presence.",
+    idealFor: "Small businesses that need a credible site that is easy to maintain.",
   },
   {
-    slug: "it-assistance",
-    icon: "wrench",
-    title: "General IT Assistance",
-    description: "A dependable go-to person for the everyday IT needs of a small office.",
-    points: ["Network & Wi-Fi setup", "Email & account admin", "Backups & IT advice"],
+    slug: "integrations",
+    icon: "layers",
+    title: "Integrations & Automation",
+    description: "Connect the tools you already use and cut out repetitive manual work.",
+    points: ["API integrations", "Data import & export", "Automated emails & reports"],
     includes: [
-      "Router, Wi-Fi, and small-office network setup",
-      "Email, Microsoft 365, and Google Workspace accounts",
-      "Backup setup and basic security hardening",
-      "Advice on buying and upgrading equipment",
+      "Connecting systems through REST APIs",
+      "Email sending and scheduling, for example with the Gmail API",
+      "CSV and spreadsheet import and export",
+      "Scheduled jobs and automatic reports",
     ],
-    idealFor: "Growing offices without a full-time IT staff member.",
+    idealFor: "Teams that copy data between apps by hand.",
+  },
+  {
+    slug: "it-support",
+    icon: "headset",
+    title: "IT Support & Maintenance",
+    description: "Hands-on support for the computers, networks and accounts your systems depend on.",
+    points: ["Troubleshooting & setup", "Networks & Wi-Fi", "Updates, backups & accounts"],
+    includes: [
+      "Computer, printer and software troubleshooting",
+      "Small-office network and Wi-Fi setup",
+      "Email and account administration (Microsoft 365, Google Workspace)",
+      "Backups, updates and basic security hardening",
+    ],
+    idealFor: "Offices without full-time IT staff, and clients who want one person for the software and the setup.",
   },
 ];
 
@@ -150,29 +148,29 @@ export const process: { icon: IconName; title: string; summary: string; details:
     title: "Discover",
     summary: "Understand the problem",
     details: [
-      "A short call or chat about what's not working and what you need",
-      "I map your current workflow and pain points",
-      "We agree on goals and what success looks like",
+      "A short call about what isn't working and what you need",
+      "A review of your current process and tools",
+      "Agreed goals and scope",
     ],
   },
   {
     icon: "clipboard",
     title: "Plan",
-    summary: "Scope, timeline, quote",
+    summary: "Scope, timeline and quote",
     details: [
-      "A clear list of features or tasks, in plain language",
-      "A realistic timeline and a fixed quote before work starts",
+      "A written feature list in plain language",
+      "A timeline and a fixed quote before work starts",
       "Wireframes or a system outline for custom builds",
     ],
   },
   {
     icon: "code",
     title: "Build",
-    summary: "Develop & test",
+    summary: "Develop and test",
     details: [
-      "Development in small steps with regular previews",
+      "Work delivered in small steps you can review",
       "Testing with sample data, never real user information",
-      "Your feedback is built in along the way",
+      "Your feedback applied as we go",
     ],
   },
   {
@@ -180,19 +178,62 @@ export const process: { icon: IconName; title: string; summary: string; details:
     title: "Launch & support",
     summary: "Deploy, train, maintain",
     details: [
-      "Deployment and setup on your hosting or devices",
-      "Hands-on training and simple documentation",
-      "Ongoing support and improvements after launch",
+      "Deployment on your hosting or devices",
+      "Training and short documentation",
+      "Fixes and improvements after launch",
     ],
   },
 ];
 
+/** "Tools I build with" strip on the Home page. */
+export const stack: { label: string; items: string[] }[] = [
+  { label: "Front end", items: ["React", "TypeScript", "JavaScript", "HTML & CSS", "Bootstrap", "Chart.js"] },
+  { label: "Back end", items: ["PHP", "Node.js", "Python", "Flask", "REST APIs"] },
+  { label: "Databases", items: ["MySQL", "PostgreSQL"] },
+  { label: "Tools", items: ["Git & GitHub", "Gmail API", "Netlify"] },
+];
+
 export const skills: { id: string; icon: IconName; title: string; blurb: string; items: string[] }[] = [
+  {
+    id: "development",
+    icon: "code",
+    title: "Development",
+    blurb: "Front end, back end and databases.",
+    items: [
+      "HTML & CSS / SCSS",
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "PHP",
+      "Python & Flask",
+      "Node.js",
+      "Java",
+      "MySQL",
+      "PostgreSQL",
+      "REST APIs",
+      "Git & GitHub",
+    ],
+  },
+  {
+    id: "networking",
+    icon: "network",
+    title: "Networking",
+    blurb: "Small-office and campus networks.",
+    items: [
+      "LAN & Wi-Fi setup",
+      "TCP/IP fundamentals",
+      "DNS & DHCP",
+      "Router & switch configuration",
+      "Network cabling",
+      "Connectivity troubleshooting",
+      "Basic network security",
+    ],
+  },
   {
     id: "support",
     icon: "headset",
-    title: "Support",
-    blurb: "Keeping people productive and their devices healthy.",
+    title: "IT Support",
+    blurb: "Day-to-day IT for staff and students.",
     items: [
       "Hardware troubleshooting",
       "Software troubleshooting",
@@ -205,61 +246,28 @@ export const skills: { id: string; icon: IconName; title: string; blurb: string;
       "Technical documentation",
     ],
   },
-  {
-    id: "networking",
-    icon: "network",
-    title: "Networking",
-    blurb: "Reliable connections for small offices and campuses.",
-    items: [
-      "LAN & Wi-Fi setup",
-      "TCP/IP fundamentals",
-      "DNS & DHCP",
-      "Router & switch configuration",
-      "Network cabling",
-      "Connectivity troubleshooting",
-      "Basic network security",
-    ],
-  },
-  {
-    id: "development",
-    icon: "code",
-    title: "Development",
-    blurb: "Building the web apps and systems that run the work.",
-    items: [
-      "HTML & CSS / SCSS",
-      "JavaScript",
-      "TypeScript",
-      "React",
-      "Python & Flask",
-      "Java",
-      "MySQL",
-      "PostgreSQL",
-      "REST APIs",
-      "Git & GitHub",
-    ],
-  },
 ];
 
 /** Default answers: edit them to match how you actually work and charge. */
 export const faqs: { q: string; a: string }[] = [
   {
-    q: "How much does a custom system or website cost?",
-    a: "It depends on the features you need. After a short conversation about your goals, I'll send a clear, fixed quote before any work starts, with no surprise charges.",
+    q: "How much does a project cost?",
+    a: "It depends on the features. After a short call I send a written quote with a fixed price before any work starts.",
   },
   {
     q: "How long does a project take?",
-    a: "A simple business website is usually done in one to three weeks. Custom systems depend on scope; I'll give you a realistic timeline in the plan.",
+    a: "A business website usually takes one to three weeks. Custom systems depend on the scope, and the plan includes a timeline.",
   },
   {
-    q: "Do you offer on-site IT support?",
-    a: "Yes, within Metro Manila. I also provide remote support anywhere, which is often the fastest way to fix software and account issues.",
+    q: "Can I update the system or website myself?",
+    a: "Yes. You get short documentation and a walkthrough of the everyday tasks. I'm also available for changes after launch.",
   },
   {
-    q: "Will I be able to update the system or website myself?",
-    a: "Yes. I hand over simple documentation and walk you through the day-to-day tasks. I'm also available for updates and support after launch.",
+    q: "Do you also do IT support?",
+    a: "Yes. I do on-site support within Metro Manila and remote support anywhere.",
   },
   {
-    q: "How do you handle my data and privacy?",
-    a: "Carefully. I use sample data for development and demos, never share client information, and follow safe practices for passwords, backups, and access.",
+    q: "How do you handle data and privacy?",
+    a: "I use sample data in development and demos, never share client information, and follow safe practices for passwords, backups and access.",
   },
 ];

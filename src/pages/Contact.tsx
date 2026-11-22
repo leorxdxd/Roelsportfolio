@@ -30,7 +30,7 @@ function CopyEmail() {
 
 export default function Contact() {
   useEffect(
-    () => setPageMeta("Contact", "Get in touch for IT support, a custom system, or a new website."),
+    () => setPageMeta("Contact", "Contact Roel Delos Reyes about a custom system, a website, an integration or IT support."),
     [],
   );
   const [params] = useSearchParams();
@@ -42,7 +42,7 @@ export default function Contact() {
         crumb="Contact"
         eyebrow="Contact"
         title="Let's work together"
-        lead="Need IT help or have a system or website in mind? Send a message and I'll get back to you."
+        lead="Tell me about your project or IT problem. I'll reply by email with questions or a next step."
       />
 
       <section className="section section--tight" aria-label="Contact options">
@@ -91,8 +91,8 @@ export default function Contact() {
                 <span className="live-dot" aria-hidden="true" /> {site.availability}
               </p>
               <p>
-                Taking on IT support clients and new system or website projects. Tell me a little about
-                what you need and I'll suggest the best next step.
+                Open to new software projects and IT support work. Tell me what you need and I'll suggest
+                a next step.
               </p>
               <ul className="social-list">
                 {site.socials.map((s) => (

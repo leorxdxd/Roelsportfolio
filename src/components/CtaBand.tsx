@@ -8,8 +8,8 @@ interface Props {
 }
 
 export default function CtaBand({
-  title = "Have a system or website in mind?",
-  lead = "Tell me what's slowing your team down. I'll help you fix it, or build the tool that does.",
+  title = "Have a project in mind?",
+  lead = "Tell me what your team needs. I'll reply with questions, a rough plan and a quote.",
 }: Props) {
   return (
     <section className="section cta-section" aria-labelledby="cta-title">

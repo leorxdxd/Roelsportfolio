@@ -39,6 +39,19 @@ Timing lives in `src/timeline.json` (cut points in frames, 30 fps). Transitions 
   Uppbeat with credit) and save it as `public/music.mp3`. It's picked up automatically. Around 120 BPM keeps the cuts on the beat.
   Don't use commercial songs (e.g. chart hits). They get muted or taken down and aren't licensed for business use.
 
+## Project images (screenshots, thumbnails, posters)
+
+The website's project images are also drawn here, with sample data, in `src/screens/`
+(`helpdesk.tsx`, `checker.tsx`, `miromail.tsx`, shared UI in `kit.tsx`, code editor in `code.tsx`).
+`src/screens/index.tsx` lists every image; the id `"<project-slug>--<file>"` is the output path.
+
+```bash
+npm run images                # render all → ../public/assets/projects/<slug>/<file>.webp
+npm run images -- miromail    # only ids containing "miromail"
+```
+
+Open `npm run studio` and look in the **Website-images** folder to preview and tweak them live.
+
 ## Preview stills
 
 ```bash

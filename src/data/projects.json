@@ -2,49 +2,54 @@
   {
     "slug": "it-helpdesk-ticketing-system",
     "title": "IT Helpdesk Ticketing System",
+    "short": "Helpdesk",
     "category": "Custom System",
-    "summary": "A web-based helpdesk where staff report IT issues and the IT team tracks, prioritizes, and resolves them in one place.",
+    "summary": "A web-based helpdesk where staff report IT problems and the IT team assigns, tracks and resolves them in one place.",
     "builtFor": "The IT office of a local school",
-    "role": "Design & full-stack development",
+    "role": "Design and full-stack development",
     "overview": [
-      "IT requests used to arrive through chat messages, phone calls, and walk-ins, so issues were easy to lose and hard to follow up. This system gives every request a ticket with a category, priority, and status.",
-      "Staff submit tickets through a simple form. The IT team works from a dashboard that shows open, in-progress, and closed tickets at a glance, with charts that reveal which kinds of problems come up most often."
+      "IT requests used to come in through chat messages, phone calls and walk-ins, so some were lost and few were followed up. The system gives every request a ticket with a category, a priority, an owner and a status.",
+      "Staff submit tickets through a short form. The IT team works from a ticket queue and a dashboard that shows open work and the kinds of problems that come up most often."
     ],
     "highlights": [
       { "label": "Ticket statuses", "value": "3" },
       { "label": "Issue categories", "value": "5" },
       { "label": "Dashboard charts", "value": "4" },
-      { "label": "Smart triage", "value": "AI-assisted" }
+      { "label": "Triage", "value": "AI-assisted" }
     ],
     "features": [
-      "Ticket submission with categories (network, printer, computer, LMS, database)",
-      "Status workflow: New → In Progress → Closed",
-      "Priority levels (low, medium, high) for faster triage",
-      "AI-assisted ticket categorization and prioritization",
-      "Admin dashboard with ticket status, history, priority, and category charts",
-      "Reports and user account management with roles",
+      "Ticket form with categories for network, printer, computer, LMS and database issues",
+      "Status workflow: New, In progress, Closed",
+      "Low, medium and high priority levels",
+      "AI-assisted category and priority suggestions",
+      "Admin dashboard with charts by status, priority, category and history",
+      "Reports and user management with roles",
       "In-app notifications for new and updated tickets"
     ],
     "tech": ["PHP", "MySQL", "JavaScript", "Chart.js", "Bootstrap"],
     "thumbnail": "thumbnail.webp",
+    "showcase": { "url": "helpdesk.sampleschool.test", "images": ["screenshot-1.webp", "screenshot-3.webp"] },
     "screenshots": [
       { "file": "screenshot-1.webp", "caption": "Admin dashboard with ticket statistics" },
-      { "file": "screenshot-2.webp", "caption": "Ticket list with status and priority" },
-      { "file": "screenshot-3.webp", "caption": "Submitting a new ticket" }
+      { "file": "screenshot-2.webp", "caption": "Ticket queue with filters and bulk actions" },
+      { "file": "screenshot-3.webp", "caption": "Ticket conversation, internal notes and activity" },
+      { "file": "screenshot-4.webp", "caption": "Staff ticket form with a suggested category" },
+      { "file": "screenshot-5.webp", "caption": "Database design (MySQL)", "kind": "code" },
+      { "file": "screenshot-6.webp", "caption": "Ticket assignment logic in PHP, with tests", "kind": "code" }
     ],
     "videos": [
       {
         "title": "Full system walkthrough",
         "src": "demo.mp4",
         "poster": "poster.webp",
-        "description": "A staff member submits a ticket, then the IT admin triages, updates, and closes it.",
+        "description": "A staff member submits a ticket, then the IT admin assigns, updates and closes it.",
         "duration": ""
       },
       {
-        "title": "Admin dashboard & reports",
+        "title": "Admin dashboard and reports",
         "src": "demo-2.mp4",
         "poster": "poster-2.webp",
-        "description": "Live ticket statistics, charts by category and priority, and report generation.",
+        "description": "Ticket statistics, charts by category and priority, and report generation.",
         "duration": ""
       }
     ],
@@ -53,13 +58,14 @@
   {
     "slug": "ai-plagiarism-checker",
     "title": "AI Plagiarism & Paraphrasing Checker",
+    "short": "Plagiarism Checker",
     "category": "Web Application",
-    "summary": "Checks uploaded documents or pasted text for similarity and can paraphrase content before checking, returning a clear percentage score.",
+    "summary": "Checks pasted text or uploaded documents for similarity and returns a percentage score, with an optional paraphrasing step.",
     "builtFor": "Teachers and students",
-    "role": "Design & development",
+    "role": "Design and development",
     "overview": [
-      "Checking work for originality by hand is slow. This tool lets a user upload a document or paste text and get a similarity score in seconds.",
-      "An optional paraphrasing step rewrites the text before checking, which helps writers improve their wording and see how it changes the result."
+      "Checking written work for originality by hand is slow. This tool lets a user paste text or upload a document and get a similarity score in a few seconds.",
+      "An optional paraphrasing step rewrites the text before the check, so writers can improve their wording and see how the score changes."
     ],
     "highlights": [
       { "label": "Input", "value": "File or text" },
@@ -68,24 +74,27 @@
       { "label": "Engine", "value": "NLP" }
     ],
     "features": [
-      "Upload a document or paste text directly",
-      "Similarity score shown as an easy-to-read percentage",
+      "Paste text or upload a document",
+      "Similarity score shown as a percentage",
       "Optional paraphrasing before the check",
-      "Text comparison powered by natural language processing",
-      "Clean, distraction-free single-page interface"
+      "Text comparison using natural language processing",
+      "Simple single-page interface"
     ],
     "tech": ["Python", "Flask", "NLP / Machine Learning", "HTML & CSS", "JavaScript"],
     "thumbnail": "thumbnail.webp",
+    "showcase": { "url": "checker.example.edu", "images": ["screenshot-2.webp", "screenshot-3.webp"] },
     "screenshots": [
-      { "file": "screenshot-1.webp", "caption": "Upload or paste text to check" },
-      { "file": "screenshot-2.webp", "caption": "Similarity result" }
+      { "file": "screenshot-1.webp", "caption": "Paste text or upload a document" },
+      { "file": "screenshot-2.webp", "caption": "Similarity result" },
+      { "file": "screenshot-3.webp", "caption": "Paraphrasing flagged sentences" },
+      { "file": "screenshot-4.webp", "caption": "Similarity check endpoint in Python (Flask)", "kind": "code" }
     ],
     "videos": [
       {
-        "title": "Checking a document for plagiarism",
+        "title": "Checking a document",
         "src": "demo.mp4",
         "poster": "poster.webp",
-        "description": "Uploading a document, optional paraphrasing, and reading the similarity score.",
+        "description": "Uploading a document, the optional paraphrasing step and the similarity score.",
         "duration": ""
       }
     ],
@@ -94,13 +103,14 @@
   {
     "slug": "miromail",
     "title": "MiroMail",
+    "short": "MiroMail",
     "category": "Web Application",
-    "summary": "An email composer connected to Gmail, with a rich-text mode, a visual design mode for branded emails, and scheduled sending.",
+    "summary": "An email app connected to Gmail, with a rich-text editor, a visual design mode for branded emails, and scheduled sending.",
     "builtFor": "Small businesses and teams that send branded emails",
-    "role": "Design & full-stack development",
+    "role": "Design and full-stack development",
     "overview": [
-      "Designing a good-looking email usually means switching between a design tool and an email client. MiroMail puts both in one place.",
-      "Users sign in with Gmail, write in a familiar rich-text editor or switch to a visual design mode, and send immediately or schedule the email for later."
+      "Designing a good-looking email usually means switching between a design tool and an email client. MiroMail does both in one place.",
+      "Users sign in with Gmail, write in a rich-text editor or switch to a visual design mode, then send right away or schedule the email for later."
     ],
     "highlights": [
       { "label": "Integration", "value": "Gmail API" },
@@ -109,25 +119,28 @@
       { "label": "Mail folders", "value": "5" }
     ],
     "features": [
-      "Gmail integration for inbox, sent mail, drafts, and trash",
+      "Gmail integration for inbox, sent mail, drafts and trash",
       "Rich-text mode for everyday emails",
-      "Visual design mode for branded, designed emails",
-      "Scheduled sending with date and time picker",
-      "Clean dashboard layout with sidebar navigation"
+      "Visual design mode for branded emails",
+      "Scheduled sending with a date and time picker",
+      "Dashboard layout with sidebar navigation"
     ],
     "tech": ["React", "Node.js", "Gmail API", "Quill editor"],
     "thumbnail": "thumbnail.webp",
+    "showcase": { "url": "app.miromail.example", "images": ["screenshot-2.webp", "screenshot-1.webp"] },
     "screenshots": [
-      { "file": "screenshot-1.webp", "caption": "Compose email in text mode" },
+      { "file": "screenshot-1.webp", "caption": "Writing an email in text mode" },
       { "file": "screenshot-2.webp", "caption": "Visual design mode" },
-      { "file": "screenshot-3.webp", "caption": "Scheduling an email" }
+      { "file": "screenshot-3.webp", "caption": "Scheduling an email" },
+      { "file": "screenshot-4.webp", "caption": "Inbox synced with Gmail" },
+      { "file": "screenshot-5.webp", "caption": "Scheduling API in Node.js", "kind": "code" }
     ],
     "videos": [
       {
-        "title": "Composing and scheduling an email",
+        "title": "Writing and scheduling an email",
         "src": "demo.mp4",
         "poster": "poster.webp",
-        "description": "Writing in text mode, designing in visual mode, and scheduling the send.",
+        "description": "Writing in text mode, designing in visual mode and scheduling the send.",
         "duration": ""
       }
     ],
